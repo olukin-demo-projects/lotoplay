@@ -49,16 +49,17 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.148 0.004 228.8);
+  /* Light mode - kept as a fallback, but styled for readability */
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.15 0.01 250);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.148 0.004 228.8);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.148 0.004 228.8);
-  --primary: oklch(0.518 0.253 323.949);
-  --primary-foreground: oklch(0.977 0.017 320.058);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --primary: oklch(0.86 0.18 89.2); /* Band Yellow */
+  --primary-foreground: oklch(0.15 0.01 250);
+  --secondary: oklch(0.6 0.23 15); /* Action Pink */
+  --secondary-foreground: oklch(0.98 0 0);
   --muted: oklch(0.963 0.002 197.1);
   --muted-foreground: oklch(0.56 0.021 213.5);
   --accent: oklch(0.963 0.002 197.1);
@@ -84,24 +85,29 @@
 }
 
 .dark {
-  --background: oklch(0.148 0.004 228.8);
-  --foreground: oklch(0.987 0.002 197.1);
-  --card: oklch(0.218 0.008 223.9);
-  --card-foreground: oklch(0.987 0.002 197.1);
+  /* Background: Deep charcoal/black from the image */
+  --background: oklch(0.12 0.01 250);
+  --foreground: oklch(0.98 0 0);
+  /* Card/Muted: The semi-transparent dark sections in the UI */
+  --card: oklch(0.18 0.01 250 / 0.8);
+  --card-foreground: oklch(0.98 0 0);
   --popover: oklch(0.218 0.008 223.9);
   --popover-foreground: oklch(0.987 0.002 197.1);
-  --primary: oklch(0.452 0.211 324.591);
-  --primary-foreground: oklch(0.977 0.017 320.058);
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.275 0.011 216.9);
-  --muted-foreground: oklch(0.723 0.014 214.4);
+  /* Primary: The bright Yellow "Замовити квиток" button */
+  --primary: oklch(0.86 0.18 89.2);
+  --primary-foreground: oklch(0.12 0.01 250);
+  /* Secondary: The Pink "Замовити квиток" buttons in the table */
+  --secondary: oklch(0.6 0.23 15);
+  --secondary-foreground: oklch(0.98 0 0);
+  /* Card/Muted: The semi-transparent dark sections in the UI */
+  --muted: oklch(0.25 0.01 250);
+  --muted-foreground: oklch(0.7 0.01 250);
   --accent: oklch(0.275 0.011 216.9);
   --accent-foreground: oklch(0.987 0.002 197.1);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.56 0.021 213.5);
+  --ring: oklch(0.86 0.18 89.2);
   --chart-1: oklch(0.897 0.196 126.665);
   --chart-2: oklch(0.768 0.233 130.85);
   --chart-3: oklch(0.648 0.2 131.684);
