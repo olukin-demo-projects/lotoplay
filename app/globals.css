@@ -48,8 +48,19 @@
   --radius-4xl: calc(var(--radius) * 2.6);
   --width-page: 1168px;
   --width-page-full: 1216px;
-  /* 1168 + 24*2 padding */
   --width-menu: 1280px;
+}
+
+@utility max-w-page {
+  max-width: var(--width-page);
+}
+
+@utility max-w-page-full {
+  max-width: var(--width-page-full);
+}
+
+@utility max-w-menu {
+  max-width: var(--width-menu);
 }
 
 :root {
