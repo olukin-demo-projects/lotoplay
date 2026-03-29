@@ -3,8 +3,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import { useEffect } from 'react';
 import GoogleMap from '@/components/GoogleMap';
+import { useParallax } from '@/hooks/useParallax';
 
 const navigationLinks = [
   { name: 'Про гурт', href: '#about' },
@@ -35,6 +35,20 @@ const upcomingConcerts = [
   { city: 'Харків — ArtZavod', capacity: '500', date: '16.11.2025, 19:00' },
 ];
 
+const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  e.preventDefault();
+  const targetElement = document.getElementById(targetId.replace('#', ''));
+  if (targetElement) {
+    const headerHeight = 80; // Approximate header height for offset
+    const targetPosition = targetElement.offsetTop - headerHeight;
+
+    window.scrollTo({
+      top: targetPosition,
+      behavior: 'smooth'
+    });
+  }
+};
+
 const Page: NextPage = () => {
   useParallax();
 
@@ -48,15 +62,20 @@ const Page: NextPage = () => {
 
         {/* Header/Nav */}
         <header id="header" className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/10">
-          <nav className="mx-auto px-6 py-4 flex items-center justify-between max-w-menu">
+          <nav className="mx-auto px-6 py-6 flex items-center justify-between max-w-menu">
             <div className="flex items-center gap-2">
               <span className="text-xl font-black uppercase tracking-widest text-foreground">
-                Грим та Грім
+                G&G
               </span>
             </div>
-            <div className="flex items-center gap-8 text-sm font-medium">
+            <div className="flex items-center gap-8 text-md">
               {navigationLinks.map((link) => (
-                <a key={link.name} href={link.href} className="text-foreground hover:text-primary transition-colors">
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => handleSmoothScroll(e, link.href)}
+                  className="text-foreground hover:text-primary transition-colors"
+                >
                   {link.name}
                 </a>
               ))}
@@ -99,6 +118,7 @@ const Page: NextPage = () => {
             </div>
             <a
               href="#concerts"
+              onClick={(e) => handleSmoothScroll(e, '#concerts')}
               className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-3 text-base font-bold text-primary-foreground uppercase tracking-wider shadow-lg hover:bg-primary/90 transition-colors"
             >
               Замовити квиток
@@ -196,6 +216,7 @@ const Page: NextPage = () => {
                   src="https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx71dmeCKfy7F6dY4wiWxfqopgOIuyz5B1hXebS"
                   alt="Concert crowd section"
                   fill
+                  loading="eager"
                   sizes="(max-width: 768px) 100vw, 41vw"
                   className="object-cover"
                 />

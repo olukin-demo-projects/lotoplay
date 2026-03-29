@@ -48,7 +48,7 @@
   --radius-4xl: calc(var(--radius) * 2.6);
   --width-page: 1168px;
   --width-page-full: 1216px;
-  --width-menu: 1280px;
+  --width-menu: 1448px;
 }
 
 @utility max-w-page {
@@ -102,8 +102,8 @@
 }
 
 .dark {
-  /* Background: Deep charcoal/black from the image */
-  --background: oklch(0.12 0.01 250);
+  /* Background: Exact hex #0e0e12 */
+  --background: #0e0e12;
   --foreground: oklch(0.98 0 0);
   /* Card/Muted: The semi-transparent dark sections in the UI */
   --card: oklch(0.18 0.01 250 / 0.8);
@@ -112,7 +112,7 @@
   --popover-foreground: oklch(0.987 0.002 197.1);
   /* Primary: The bright Yellow "Замовити квиток" button */
   --primary: oklch(0.86 0.18 89.2);
-  --primary-foreground: oklch(0.12 0.01 250);
+  --primary-foreground: #0e0e12;
   /* Secondary: The Pink "Замовити квиток" buttons in the table */
   --secondary: oklch(0.6 0.23 15);
   --secondary-foreground: oklch(0.98 0 0);
