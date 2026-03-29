@@ -128,15 +128,19 @@ const Page: NextPage = () => {
         </section>
 
         {/* Upcoming Concerts */}
-        <section id="concerts" className="bg-muted py-20">
+        <section id="concerts" className="py-20">
           <div className="mx-auto px-6 max-w-page-full">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-foreground">
-              Найближчі концерти
-            </h2>
-            <div className="overflow-x-auto rounded-xl border border-border/10 bg-card/50 backdrop-blur-md p-1">
+            <div className="overflow-x-auto rounded-xl border-2 border-table-border backdrop-blur-md overflow-hidden">
               <table className="w-full text-left">
-                <thead className="border-b border-border/10">
+                <thead className="bg-table-header border-b-2 border-table-border">
                   <tr>
+                    <th colSpan={4} className="p-6">
+                      <h2 className="text-xl md:text-2xl font-bold text-foreground">
+                        Найближчі концерти
+                      </h2>
+                    </th>
+                  </tr>
+                  <tr className="border-t-2 border-table-border">
                     {['Місто / Заклад', 'К-сть місць', 'Дата і час', ''].map((header) => (
                       <th key={header} className="px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                         {header}
@@ -144,14 +148,14 @@ const Page: NextPage = () => {
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-border/10">
+                <tbody className="bg-table-row divide-y-2 divide-table-border">
                   {upcomingConcerts.map((concert, idx) => (
                     <tr key={idx} className="hover:bg-white/5 transition-colors">
                       <td className="px-6 py-5 text-sm font-bold text-white">{concert.city}</td>
-                      <td className="px-6 py-5 text-sm text-foreground/80">{concert.capacity}</td>
-                      <td className="px-6 py-5 text-sm text-foreground/80">{concert.date}</td>
-                      <td className="px-6 py-5 text-right">
-                        <button className="inline-flex items-center justify-center rounded-lg bg-secondary px-5 py-2 text-xs font-bold text-secondary-foreground hover:bg-secondary/90 transition-colors whitespace-nowrap">
+                      <td className="px-6 py-5 text-sm text-white">{concert.capacity}</td>
+                      <td className="px-6 py-5 text-sm text-white">{concert.date}</td>
+                      <td className="px-6 py-5 text-center">
+                        <button className="inline-flex items-center justify-center rounded-lg bg-secondary px-5 py-2 text-sm font-bold text-secondary-foreground hover:bg-secondary/90 transition-colors whitespace-nowrap">
                           Замовити квиток
                         </button>
                       </td>
