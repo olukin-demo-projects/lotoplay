@@ -36,22 +36,7 @@ const upcomingConcerts = [
 ];
 
 const Page: NextPage = () => {
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = window.pageYOffset;
-      const parallax = scrolled * 0.5; // Adjust speed multiplier as needed
-      document.documentElement.style.setProperty('--scroll-y', `${parallax}px`);
-    };
-
-    // Set initial value
-    handleScroll();
-
-    // Add scroll listener
-    window.addEventListener('scroll', handleScroll);
-
-    // Cleanup
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  useParallax();
 
   return (
     <>
