@@ -35,6 +35,7 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-highlight: var(--highlight);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -63,6 +64,41 @@
   max-width: var(--width-menu);
 }
 
+@utility text-shadow {
+  text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.8);
+}
+
+@utility btn-glow {
+  background: radial-gradient(circle at center, #feea41 0%, oklch(0.86 0.18 89.2) 100%);
+  box-shadow: 0 0 20px 5px rgba(254, 234, 65, 0.3);
+}
+
+@utility btn-brutalist {
+  /* A dark, grayed-out yellow for the brutalist effect */
+  --btn-brutalist-color: oklch(0.7 0.08 89.2);
+
+  border: 3px solid var(--btn-brutalist-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    animation: brutalist-pulse 1.5s infinite ease-in-out;
+  }
+}
+
+@keyframes brutalist-pulse {
+  0% {
+    box-shadow: 0px 0px 20px 5px var(--btn-brutalist-color);
+  }
+
+  50% {
+    box-shadow: 0px 0px 30px 10px var(--btn-brutalist-color);
+  }
+
+  100% {
+    box-shadow: 0px 0px 20px 5px var(--btn-brutalist-color);
+  }
+}
+
 :root {
   /* Light mode - kept as a fallback, but styled for readability */
   --background: oklch(0.98 0 0);
@@ -72,6 +108,7 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.148 0.004 228.8);
   --primary: oklch(0.86 0.18 89.2);
+  --highlight: oklch(0.84 0.15 210);
   /* Band Yellow */
   --primary-foreground: oklch(0.15 0.01 250);
   --secondary: oklch(0.6 0.23 15);
@@ -90,7 +127,7 @@
   --chart-3: oklch(0.648 0.2 131.684);
   --chart-4: oklch(0.532 0.157 131.589);
   --chart-5: oklch(0.453 0.124 130.933);
-  --radius: 0.875rem;
+  --radius: 0.5625rem;
   --sidebar: oklch(0.987 0.002 197.1);
   --sidebar-foreground: oklch(0.148 0.004 228.8);
   --sidebar-primary: oklch(0.591 0.293 322.896);
@@ -112,6 +149,7 @@
   --popover-foreground: oklch(0.987 0.002 197.1);
   /* Primary: The bright Yellow "Замовити квиток" button */
   --primary: oklch(0.86 0.18 89.2);
+  --highlight: oklch(0.84 0.15 210);
   --primary-foreground: #0e0e12;
   /* Secondary: The Pink "Замовити квиток" buttons in the table */
   --secondary: oklch(0.6 0.23 15);

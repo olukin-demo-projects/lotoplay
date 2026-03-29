@@ -84,15 +84,16 @@ const Page: NextPage = () => {
         </header>
 
         {/* Hero Section */}
-        <section id="hero" className="relative h-[606px] flex flex-col justify-center items-center text-center overflow-hidden">
+        <section id="hero" className="relative h-[606px] flex flex-col justify-center items-center text-left overflow-hidden">
           {/* Background Image (with parallax effect) */}
-          <div className="absolute inset-0 z-0 opacity-10 will-change-transform">
+          <div className="absolute inset-0 z-0 will-change-transform">
+            <div className="absolute inset-0 bg-black/40 z-10" />
             <Image
               src="https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx7dxmL5aHqgxe3FC2SzKjJi19sVWImrBNb84cL" // Replace path
               alt="Concert scene background"
               fill
               sizes="100vw"
-              className="object-cover"
+              className="object-cover saturate-[.6] brightness-125 blur-[1px]"
               priority
               style={{
                 transform: 'translateY(var(--scroll-y))',
@@ -101,25 +102,25 @@ const Page: NextPage = () => {
             />
           </div>
 
-          <div className="relative z-10 mx-auto px-6 py-12 md:py-24 max-w-page-full">
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
+          <div className="relative z-10 w-full mx-auto px-6 py-12 md:py-24 max-w-page-full">
+            <h1 className="text-3xl md:text-6xl font-extrabold tracking-tight text-white mb-10 text-shadow">
               Гурт «Грим та Грім»
             </h1>
-            <p className="text-xl md:text-2xl font-bold text-foreground mb-4">
+            <p className="text-lg md:text-xl text-foreground mb-8 text-shadow">
               Справжній український рок, який гуркоче в серці.
             </p>
-            <div className="max-w-2xl mx-auto mb-10 space-y-4">
+            <div className="mb-10 space-y-4 text-shadow">
               <p className="text-base text-foreground/90">
-                «Грим та Грім» — це поєднання <span className="text-primary font-semibold">потужних</span> гітарних рифів, чесних текстів і вибухової енергії сцени. Ми граємо для тих, хто цінує живий звук, свободу та силу музики.
+                «Грим та Грім» — це поєднання <span className="text-highlight font-semibold">потужних</span> гітарних рифів, чесних текстів і вибухової енергії сцени. Ми граємо для тих, хто цінує живий звук, свободу та силу музики.
               </p>
               <p className="text-base text-foreground/90">
-                <span className="text-primary font-semibold">Наші концерти</span> — це завжди контакт з залом, драйв і емоції. Приєднуйся до нас на найближчих виступах і відчуй цей саунд наживо!
+                <span className="text-highlight font-semibold">Наші концерти</span> — це завжди контакт з залом, драйв і емоції. Приєднуйся до нас на найближчих виступах і відчуй цей саунд наживо!
               </p>
             </div>
             <a
               href="#concerts"
               onClick={(e) => handleSmoothScroll(e, '#concerts')}
-              className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-3 text-base font-bold text-primary-foreground uppercase tracking-wider shadow-lg hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center justify-center rounded-lg px-8 py-3 text-base font-bold text-primary-foreground uppercase tracking-wider transition-all btn-glow btn-brutalist"
             >
               Замовити квиток
             </a>
