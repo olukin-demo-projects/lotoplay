@@ -15,24 +15,24 @@ const navigationLinks = [
 
 const bandMembers = [
   {
-    name: 'Олесь - Гитарист',
-    imgSrc: 'https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx7WSTEJXbG58AwNPMyfErg63vD2a9uOQjh7o4i', // Replace path
+    name: 'Максим — гітара',
+    imgSrc: 'https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx7WSTEJXbG58AwNPMyfErg63vD2a9uOQjh7o4i',
   },
   {
-    name: 'Іван - Вокал',
-    imgSrc: 'https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx7brMdk4I9jKouTtwhXeOJB2rPdlYRgFik7Gap', // Replace path
+    name: 'Олена — вокал',
+    imgSrc: 'https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx7brMdk4I9jKouTtwhXeOJB2rPdlYRgFik7Gap',
   },
   {
-    name: 'Тарас - Барабани',
-    imgSrc: 'https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx7mgJWfwtoDt4cpP6FhmXb3ivCYZro9Vg2E5dN', // Replace path
+    name: 'Тарас — барабани',
+    imgSrc: 'https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx7mgJWfwtoDt4cpP6FhmXb3ivCYZro9Vg2E5dN',
   },
 ];
 
 const upcomingConcerts = [
-  { date: '12.10.2024', name: 'Kyiv Rock Fest', location: 'Палац Спорту' },
-  { date: '25.10.2024', name: 'Autumn Scream', location: 'Docker\'s Pub' },
-  { date: '15.11.2024', name: 'Lviv Metal Madness', location: 'Malevich Concert Arena' },
-  { date: '30.11.2024', name: 'Winter Fury Tour', location: 'Odesa Philharmonic Theatre' },
+  { city: 'Київ — Docker-G Pub', capacity: '250', date: '25.10.2025, 19:00' },
+  { city: 'Львів — !FESTrepublic', capacity: '400', date: '01.11.2025, 20:00' },
+  { city: 'Одеса — Зелен театр', capacity: '700', date: '09.11.2025, 19:30' },
+  { city: 'Харків — ArtZavod', capacity: '500', date: '16.11.2025, 19:00' },
 ];
 
 const Page: NextPage = () => {
@@ -45,10 +45,10 @@ const Page: NextPage = () => {
 
     // Set initial value
     handleScroll();
-    
+
     // Add scroll listener
     window.addEventListener('scroll', handleScroll);
-    
+
     // Cleanup
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -60,9 +60,9 @@ const Page: NextPage = () => {
       </Head>
 
       <div className="min-h-screen bg-background text-foreground flex flex-col antialiased">
-        
+
         {/* Header/Nav */}
-        <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/10">
+        <header id="header" className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/10">
           <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="text-xl font-black uppercase tracking-widest text-foreground">
@@ -80,7 +80,7 @@ const Page: NextPage = () => {
         </header>
 
         {/* Hero Section */}
-        <section className="relative h-[606px] flex flex-col justify-center items-center text-center overflow-hidden">
+        <section id="hero" className="relative h-[606px] flex flex-col justify-center items-center text-center overflow-hidden">
           {/* Background Image (with parallax effect) */}
           <div className="absolute inset-0 z-0 opacity-10 will-change-transform">
             <Image
@@ -95,19 +95,27 @@ const Page: NextPage = () => {
               }}
             />
           </div>
-          
-          <div className="relative z-10 max-w-3xl container mx-auto px-6 py-12 md:py-24">
-            <h1 className="text-5xl md:text-7xl font-extrabold uppercase tracking-tight text-white mb-6">
-              Грут «Грим та Грім»
+
+          <div className="relative z-10 max-w-4xl container mx-auto px-6 py-12 md:py-24">
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
+              Гурт «Грим та Грім»
             </h1>
-            <p className="text-lg md:text-xl text-foreground/80 mb-12">
-              Справжній український рок. Магія та драйв у кожній ноті, що проникає у серце.
+            <p className="text-xl md:text-2xl font-bold text-foreground mb-4">
+              Справжній український рок, який гуркоче в серці.
             </p>
+            <div className="max-w-2xl mx-auto mb-10 space-y-4">
+              <p className="text-base text-foreground/90">
+                «Грим та Грім» — це поєднання <span className="text-primary font-semibold">потужних</span> гітарних рифів, чесних текстів і вибухової енергії сцени. Ми граємо для тих, хто цінує живий звук, свободу та силу музики.
+              </p>
+              <p className="text-base text-foreground/90">
+                <span className="text-primary font-semibold">Наші концерти</span> — це завжди контакт з залом, драйв і емоції. Приєднуйся до нас на найближчих виступах і відчуй цей саунд наживо!
+              </p>
+            </div>
             <a
               href="#concerts"
-              className="inline-flex items-center justify-center rounded-full bg-primary px-10 py-4 text-base font-bold text-primary-foreground uppercase tracking-wider shadow-lg hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-3 text-base font-bold text-primary-foreground uppercase tracking-wider shadow-lg hover:bg-primary/90 transition-colors"
             >
-              ЗАМОВИТИ КВИТОК
+              Замовити квиток
             </a>
           </div>
         </section>
@@ -118,12 +126,12 @@ const Page: NextPage = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-foreground">
               Найближчі концерти
             </h2>
-            <div className="overflow-x-auto rounded-lg border border-border/10 bg-card p-6">
+            <div className="overflow-x-auto rounded-xl border border-border/10 bg-card/50 backdrop-blur-md p-1">
               <table className="w-full text-left">
                 <thead className="border-b border-border/10">
                   <tr>
-                    {['Дата', 'Концерт', 'Локація', 'Квитки'].map((header) => (
-                      <th key={header} className="px-6 py-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                    {['Місто / Заклад', 'К-сть місць', 'Дата і час', ''].map((header) => (
+                      <th key={header} className="px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                         {header}
                       </th>
                     ))}
@@ -131,13 +139,13 @@ const Page: NextPage = () => {
                 </thead>
                 <tbody className="divide-y divide-border/10">
                   {upcomingConcerts.map((concert, idx) => (
-                    <tr key={idx} className="hover:bg-card/50">
-                      <td className="px-6 py-5 text-base font-medium">{concert.date}</td>
-                      <td className="px-6 py-5 text-base">{concert.name}</td>
-                      <td className="px-6 py-5 text-base">{concert.location}</td>
-                      <td className="px-6 py-5">
-                        <button className="inline-flex items-center justify-center rounded-full bg-secondary px-6 py-2.5 text-xs font-semibold text-secondary-foreground uppercase tracking-wide hover:bg-secondary/90 transition-colors">
-                          Купити квиток
+                    <tr key={idx} className="hover:bg-white/5 transition-colors">
+                      <td className="px-6 py-5 text-sm font-bold text-white">{concert.city}</td>
+                      <td className="px-6 py-5 text-sm text-foreground/80">{concert.capacity}</td>
+                      <td className="px-6 py-5 text-sm text-foreground/80">{concert.date}</td>
+                      <td className="px-6 py-5 text-right">
+                        <button className="inline-flex items-center justify-center rounded-lg bg-secondary px-5 py-2 text-xs font-bold text-secondary-foreground hover:bg-secondary/90 transition-colors whitespace-nowrap">
+                          Замовити квиток
                         </button>
                       </td>
                     </tr>
@@ -148,98 +156,124 @@ const Page: NextPage = () => {
           </div>
         </section>
 
-        {/* Band Members */}
         <section id="gallery" className="container mx-auto px-6 py-20">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-foreground">
+          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center text-foreground">
             Учасники гурту
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {bandMembers.map((member) => (
-              <div key={member.name} className="bg-card rounded-2xl border border-border/10 overflow-hidden shadow-xl text-center">
-                <div className="aspect-[3/4] relative">
+              <div key={member.name} className="group relative">
+                <div className="aspect-[3/4] relative rounded-2xl overflow-hidden border border-border/10 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
                   <Image
                     src={member.imgSrc}
                     alt={member.name}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
                 </div>
-                <div className="p-6">
-                  <p className="text-xl font-bold text-foreground">{member.name}</p>
+                <div className="mt-6 text-center">
+                  <p className="text-xl font-bold text-foreground/90 tracking-tight transition-colors group-hover:text-primary">
+                    {member.name}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Our History */}
-        <section id="about" className="bg-muted py-20">
-          <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-            <div className="md:col-span-8">
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 text-foreground">
+        <section id="about" className="bg-muted/30 py-24">
+          <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+            <div className="md:col-span-7">
+              <h2 className="text-4xl md:text-5xl font-bold mb-10 text-foreground">
                 Наша історія
               </h2>
-              <p className="text-base text-foreground/90 leading-relaxed mb-6">
-                «Грим та Грім» народилися з бажання створювати музику, яка йде від самого серця... Наша музика — це справжня українська магія. Ми поєднуємо традиційні елементи та сучасне звучання, створюючи унікальний драйв.
-              </p>
-              <p className="text-base text-foreground/90 leading-relaxed">
-                Кожен наш виступ — це не просто концерт, а справжня подія, де ми ділимося своєю енергією та створюємо незабутню атмосферу.
-              </p>
+              <div className="space-y-6 text-foreground/80 leading-relaxed text-lg">
+                <p>
+                  «Грим та Грім» народився з бажання створювати музику, яка відчувається серцем. Ми почали свій шлях у маленькій студії в центрі Києва, де кожен акорд, кожне слово було наповнене емоціями та переживаннями. Це було місце, де народжувались наші перші пісні, де ми вчились грати разом як єдиний організм.
+                </p>
+                <p>
+                  За роки нашої діяльності ми виступили на десятках сцен, від невеликих клубів до великих фестивалів. Наша музика — це поєднання традиційного року з сучасними елементами, що робить її унікальною та впізнаваною. Ми не боїмось експериментувати з звуком, додаючи електронні елементи або народні інструменти.
+                </p>
+                <p>
+                  Кожен наш виступ — це не просто концерт, а справжня подія, де ми ділимося своєю енергією з глядачами та створюємо неповторну атмосферу. Ми віримо, що музика має силу об’єднувати людей, створювати спільноти та надихати на зміни.
+                </p>
+                <p>
+                  Наш колектив складається з досвідчених музикантів, кожен з яких привносить свій унікальний стиль та бачення. Максим створює неймовірні гітарні рифи, Олена зачаровує своїм вокалом, а Тарас тримає ритм, який змушує серця битися в унісон з музикою.
+                </p>
+              </div>
             </div>
-            <div className="md:col-span-4 rounded-xl border border-border/10 overflow-hidden aspect-[4/3] relative">
-              <Image
-                src="https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx71dmeCKfy7F6dY4wiWxfqopgOIuyz5B1hXebS" // Replace path
-                alt="Concert crowd section"
-                fill
-                className="object-cover"
-              />
+            <div className="md:col-span-5 relative">
+              <div className="rounded-2xl border border-border/10 overflow-hidden aspect-[4/3] shadow-2xl skew-y-1 transition-transform duration-500 hover:skew-y-0 hover:scale-[1.02]">
+                <Image
+                  src="https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx71dmeCKfy7F6dY4wiWxfqopgOIuyz5B1hXebS"
+                  alt="Concert crowd section"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-6 -left-6 -z-10 w-full h-full bg-primary/10 rounded-2xl border border-primary/20"></div>
             </div>
           </div>
         </section>
 
         {/* Contact Us */}
-        <section id="contact" className="container mx-auto px-6 py-20">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-foreground">
-            Зв&apos;яжіться з нами
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            
+        <section id="contact" className="container mx-auto px-6 py-24">
+          <div className="max-w-2xl mx-auto text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+              Зв&apos;яжіться з нами
+            </h2>
+            <p className="text-foreground/60">Хочеш заказати виступ або маєш питання? Пиши!</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+
             {/* Contact Form */}
-            <div className="bg-card p-8 rounded-2xl border border-border/10 shadow-xl">
+            <div className="bg-card/40 backdrop-blur-xl p-10 rounded-3xl border border-border/10 shadow-2xl">
               <form className="space-y-6">
-                <input type="text" placeholder="Ім'я" className="w-full px-5 py-4 bg-input border border-border/15 rounded-lg text-foreground placeholder:text-muted-foreground focus:ring-1 focus:ring-ring focus:outline-none" />
-                <input type="email" placeholder="Email" className="w-full px-5 py-4 bg-input border border-border/15 rounded-lg text-foreground placeholder:text-muted-foreground focus:ring-1 focus:ring-ring focus:outline-none" />
-                <textarea placeholder="Повідомлення" rows={5} className="w-full px-5 py-4 bg-input border border-border/15 rounded-lg text-foreground placeholder:text-muted-foreground focus:ring-1 focus:ring-ring focus:outline-none"></textarea>
-                <button type="submit" className="w-full inline-flex items-center justify-center rounded-lg bg-secondary py-4 text-base font-bold text-secondary-foreground uppercase tracking-wider shadow-lg hover:bg-secondary/90 transition-colors">
-                  ВІДПРАВИТИ
+                <div className="space-y-2">
+                  <label className="text-xs font-bold uppercase tracking-widest text-foreground/50 ml-1">Ім&apos;я</label>
+                  <input type="text" placeholder="Ваше ім'я" className="w-full px-6 py-4 bg-input/50 border border-border/10 rounded-xl text-foreground placeholder:text-muted-foreground/40 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-bold uppercase tracking-widest text-foreground/50 ml-1">Email</label>
+                  <input type="email" placeholder="example@mail.com" className="w-full px-6 py-4 bg-input/50 border border-border/10 rounded-xl text-foreground placeholder:text-muted-foreground/40 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-bold uppercase tracking-widest text-foreground/50 ml-1">Повідомлення</label>
+                  <textarea placeholder="Розкажи про свої ідеї..." rows={5} className="w-full px-6 py-4 bg-input/50 border border-border/10 rounded-xl text-foreground placeholder:text-muted-foreground/40 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all resize-none"></textarea>
+                </div>
+                <button type="submit" className="w-full inline-flex items-center justify-center rounded-xl bg-secondary py-5 text-base font-bold text-secondary-foreground uppercase tracking-widest shadow-2xl hover:scale-[1.02] active:scale-95 transition-all">
+                  Відправити
                 </button>
               </form>
             </div>
 
             {/* Google Map */}
-            <div className="bg-card rounded-2xl border border-border/10 shadow-xl overflow-hidden aspect-[4/3] relative">
-              <GoogleMap 
-                center={{ lat: 50.4501, lng: 30.5234 }} // Kyiv coordinates
-                zoom={14}
-                className="w-full h-full"
-              />
-              <div className="absolute top-4 left-4 bg-background/90 px-4 py-2 rounded-full text-xs font-medium text-foreground border border-border/10 shadow-md">
-                Місцезнаходження
+            <div className="space-y-6">
+              <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/10 shadow-2xl overflow-hidden aspect-square relative group">
+                <GoogleMap
+                  center={{ lat: 50.4501, lng: 30.5234 }}
+                  zoom={14}
+                  className="w-full h-full grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                />
+                <div className="absolute top-6 left-6 bg-background/80 backdrop-blur-md px-6 py-3 rounded-full text-xs font-bold text-foreground border border-border/10 shadow-2xl tracking-widest uppercase">
+                  Наше місцезнаходження
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="bg-muted border-t border-border/10 py-8">
-          <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-muted-foreground">
-            <div className="text-center md:text-left">
-              <p>&copy; 2024 Гурд Грим та Грім. Всі права захищені.</p>
-              <p>booking@grimtagrim.com | +38 099 123-45-67</p>
+        <footer id="footer" className="bg-background border-t border-border/10 py-12">
+          <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10 text-sm text-muted-foreground">
+            <div className="text-center md:text-left space-y-2">
+              <p className="text-base font-bold text-foreground">© 2025 «Грим та Грім». Всі права захищені.</p>
+              <p className="text-foreground/60">booking@lotoplay.com | +38 (099) 123-45-67</p>
             </div>
-            <div className="flex gap-6">
-              {['Instagram', 'Facebook', 'YouTube'].map(link => (
-                <a key={link} href="#" className="hover:text-primary transition-colors">{link}</a>
+            <div className="flex gap-8">
+              {['Instagram', 'YouTube', 'Facebook'].map(link => (
+                <a key={link} href="#" className="font-medium text-foreground/70 hover:text-primary transition-colors text-base">{link}</a>
               ))}
             </div>
           </div>
