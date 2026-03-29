@@ -63,7 +63,7 @@ const Page: NextPage = () => {
 
         {/* Header/Nav */}
         <header id="header" className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/10">
-          <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
+          <nav className="mx-auto px-6 py-4 flex items-center justify-between max-w-menu">
             <div className="flex items-center gap-2">
               <span className="text-xl font-black uppercase tracking-widest text-foreground">
                 Грим та Грім
@@ -87,6 +87,7 @@ const Page: NextPage = () => {
               src="https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx7dxmL5aHqgxe3FC2SzKjJi19sVWImrBNb84cL" // Replace path
               alt="Concert scene background"
               fill
+              sizes="100vw"
               className="object-cover"
               priority
               style={{
@@ -96,7 +97,7 @@ const Page: NextPage = () => {
             />
           </div>
 
-          <div className="relative z-10 max-w-4xl container mx-auto px-6 py-12 md:py-24">
+          <div className="relative z-10 mx-auto px-6 py-12 md:py-24 max-w-page-full">
             <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
               Гурт «Грим та Грім»
             </h1>
@@ -122,7 +123,7 @@ const Page: NextPage = () => {
 
         {/* Upcoming Concerts */}
         <section id="concerts" className="bg-muted py-20">
-          <div className="container mx-auto px-6">
+          <div className="mx-auto px-6 max-w-page-full">
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-foreground">
               Найближчі концерти
             </h2>
@@ -156,7 +157,7 @@ const Page: NextPage = () => {
           </div>
         </section>
 
-        <section id="gallery" className="container mx-auto px-6 py-20">
+        <section id="gallery" className="mx-auto px-6 py-20 max-w-page-full">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center text-foreground">
             Учасники гурту
           </h2>
@@ -168,6 +169,7 @@ const Page: NextPage = () => {
                     src={member.imgSrc}
                     alt={member.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
@@ -182,8 +184,8 @@ const Page: NextPage = () => {
           </div>
         </section>
 
-        <section id="about" className="bg-muted/30 py-24">
-          <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+        <section id="about" className="bg-linear-to-b from-muted/30 to-background py-24">
+          <div className="mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16 items-center max-w-page-full">
             <div className="md:col-span-7">
               <h2 className="text-4xl md:text-5xl font-bold mb-10 text-foreground">
                 Наша історія
@@ -204,11 +206,12 @@ const Page: NextPage = () => {
               </div>
             </div>
             <div className="md:col-span-5 relative">
-              <div className="rounded-2xl border border-border/10 overflow-hidden aspect-[4/3] shadow-2xl skew-y-1 transition-transform duration-500 hover:skew-y-0 hover:scale-[1.02]">
+              <div className="relative rounded-2xl border border-border/10 overflow-hidden aspect-[4/3] shadow-2xl skew-y-1 transition-transform duration-500 hover:skew-y-0 hover:scale-[1.02]">
                 <Image
                   src="https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx71dmeCKfy7F6dY4wiWxfqopgOIuyz5B1hXebS"
                   alt="Concert crowd section"
                   fill
+                  sizes="(max-width: 768px) 100vw, 41vw"
                   className="object-cover"
                 />
               </div>
@@ -218,47 +221,49 @@ const Page: NextPage = () => {
         </section>
 
         {/* Contact Us */}
-        <section id="contact" className="container mx-auto px-6 py-24">
-          <div className="max-w-2xl mx-auto text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-              Зв&apos;яжіться з нами
-            </h2>
-            <p className="text-foreground/60">Хочеш заказати виступ або маєш питання? Пиши!</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-
-            {/* Contact Form */}
-            <div className="bg-card/40 backdrop-blur-xl p-10 rounded-3xl border border-border/10 shadow-2xl">
-              <form className="space-y-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-foreground/50 ml-1">Ім&apos;я</label>
-                  <input type="text" placeholder="Ваше ім'я" className="w-full px-6 py-4 bg-input/50 border border-border/10 rounded-xl text-foreground placeholder:text-muted-foreground/40 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-foreground/50 ml-1">Email</label>
-                  <input type="email" placeholder="example@mail.com" className="w-full px-6 py-4 bg-input/50 border border-border/10 rounded-xl text-foreground placeholder:text-muted-foreground/40 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-foreground/50 ml-1">Повідомлення</label>
-                  <textarea placeholder="Розкажи про свої ідеї..." rows={5} className="w-full px-6 py-4 bg-input/50 border border-border/10 rounded-xl text-foreground placeholder:text-muted-foreground/40 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all resize-none"></textarea>
-                </div>
-                <button type="submit" className="w-full inline-flex items-center justify-center rounded-xl bg-secondary py-5 text-base font-bold text-secondary-foreground uppercase tracking-widest shadow-2xl hover:scale-[1.02] active:scale-95 transition-all">
-                  Відправити
-                </button>
-              </form>
+        <section id="contact" className="bg-linear-to-t from-muted/30 to-background py-24">
+          <div className="mx-auto px-6 max-w-page-full">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+                Зв&apos;яжіться з нами
+              </h2>
+              <p className="text-foreground/60">Хочеш заказати виступ або маєш питання? Пиши!</p>
             </div>
 
-            {/* Google Map */}
-            <div className="space-y-6">
-              <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/10 shadow-2xl overflow-hidden aspect-square relative group">
-                <GoogleMap
-                  center={{ lat: 50.4501, lng: 30.5234 }}
-                  zoom={14}
-                  className="w-full h-full grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-                />
-                <div className="absolute top-6 left-6 bg-background/80 backdrop-blur-md px-6 py-3 rounded-full text-xs font-bold text-foreground border border-border/10 shadow-2xl tracking-widest uppercase">
-                  Наше місцезнаходження
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+
+              {/* Contact Form */}
+              <div className="bg-card/40 backdrop-blur-xl p-10 rounded-3xl border border-border/10 shadow-2xl">
+                <form className="space-y-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold uppercase tracking-widest text-foreground/50 ml-1">Ім&apos;я</label>
+                    <input type="text" placeholder="Ваше ім'я" className="w-full px-6 py-4 bg-input/50 border border-border/10 rounded-xl text-foreground placeholder:text-muted-foreground/40 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold uppercase tracking-widest text-foreground/50 ml-1">Email</label>
+                    <input type="email" placeholder="example@mail.com" className="w-full px-6 py-4 bg-input/50 border border-border/10 rounded-xl text-foreground placeholder:text-muted-foreground/40 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold uppercase tracking-widest text-foreground/50 ml-1">Повідомлення</label>
+                    <textarea placeholder="Розкажи про свої ідеї..." rows={5} className="w-full px-6 py-4 bg-input/50 border border-border/10 rounded-xl text-foreground placeholder:text-muted-foreground/40 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all resize-none"></textarea>
+                  </div>
+                  <button type="submit" className="w-full inline-flex items-center justify-center rounded-xl bg-secondary py-5 text-base font-bold text-secondary-foreground uppercase tracking-widest shadow-2xl hover:scale-[1.02] active:scale-95 transition-all">
+                    Відправити
+                  </button>
+                </form>
+              </div>
+
+              {/* Google Map */}
+              <div className="space-y-6">
+                <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/10 shadow-2xl overflow-hidden aspect-square relative group">
+                  <GoogleMap
+                    center={{ lat: 50.4501, lng: 30.5234 }}
+                    zoom={14}
+                    className="w-full h-full grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                  />
+                  <div className="absolute top-6 left-6 bg-background/80 backdrop-blur-md px-6 py-3 rounded-full text-xs font-bold text-foreground border border-border/10 shadow-2xl tracking-widest uppercase">
+                    Наше місцезнаходження
+                  </div>
                 </div>
               </div>
             </div>
@@ -266,7 +271,7 @@ const Page: NextPage = () => {
         </section>
 
         <footer id="footer" className="bg-background border-t border-border/10 py-12">
-          <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10 text-sm text-muted-foreground">
+          <div className="mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10 text-sm text-muted-foreground max-w-page-full">
             <div className="text-center md:text-left space-y-2">
               <p className="text-base font-bold text-foreground">© 2025 «Грим та Грім». Всі права захищені.</p>
               <p className="text-foreground/60">booking@lotoplay.com | +38 (099) 123-45-67</p>

@@ -46,6 +46,10 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --width-page: 1168px;
+  --width-page-full: 1216px;
+  /* 1168 + 24*2 padding */
+  --width-menu: 1280px;
 }
 
 :root {
@@ -56,9 +60,11 @@
   --card-foreground: oklch(0.148 0.004 228.8);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.148 0.004 228.8);
-  --primary: oklch(0.86 0.18 89.2); /* Band Yellow */
+  --primary: oklch(0.86 0.18 89.2);
+  /* Band Yellow */
   --primary-foreground: oklch(0.15 0.01 250);
-  --secondary: oklch(0.6 0.23 15); /* Action Pink */
+  --secondary: oklch(0.6 0.23 15);
+  /* Action Pink */
   --secondary-foreground: oklch(0.98 0 0);
   --muted: oklch(0.963 0.002 197.1);
   --muted-foreground: oklch(0.56 0.021 213.5);
@@ -127,9 +133,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
