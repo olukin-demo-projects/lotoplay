@@ -84,7 +84,7 @@ const Page: NextPage = () => {
         </header>
 
         {/* Hero Section */}
-        <section id="hero" className="relative h-[606px] flex flex-col justify-center items-center text-left overflow-hidden">
+        <section id="hero" className="relative h-[600px] flex flex-col justify-center items-center text-left overflow-hidden">
           {/* Background Image (with parallax effect) */}
           <div className="absolute inset-0 z-0 will-change-transform">
             <div className="absolute inset-0 bg-black/40 z-10" />
@@ -128,13 +128,13 @@ const Page: NextPage = () => {
         </section>
 
         {/* Upcoming Concerts */}
-        <section id="concerts" className="py-20">
+        <section id="concerts" className="py-16">
           <div className="mx-auto px-6 max-w-page-full">
             <div className="overflow-x-auto rounded-xl border-2 border-table-border backdrop-blur-md overflow-hidden">
               <table className="w-full text-left">
                 <thead className="bg-table-header border-b-2 border-table-border">
                   <tr>
-                    <th colSpan={4} className="p-6">
+                    <th colSpan={4} className="p-4">
                       <h2 className="text-xl md:text-2xl font-bold text-foreground">
                         Найближчі концерти
                       </h2>
@@ -142,7 +142,7 @@ const Page: NextPage = () => {
                   </tr>
                   <tr className="border-t-2 border-table-border">
                     {['Місто / Заклад', 'К-сть місць', 'Дата і час', ''].map((header) => (
-                      <th key={header} className="px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                      <th key={header} className="px-4 py-4 font-semibold text-muted-foreground tracking-wider">
                         {header}
                       </th>
                     ))}
@@ -151,10 +151,10 @@ const Page: NextPage = () => {
                 <tbody className="bg-table-row divide-y-2 divide-table-border">
                   {upcomingConcerts.map((concert, idx) => (
                     <tr key={idx} className="hover:bg-white/5 transition-colors">
-                      <td className="px-6 py-5 text-sm font-bold text-white">{concert.city}</td>
-                      <td className="px-6 py-5 text-sm text-white">{concert.capacity}</td>
-                      <td className="px-6 py-5 text-sm text-white">{concert.date}</td>
-                      <td className="px-6 py-5 text-center">
+                      <td className="px-4 py-3 text-sm font-bold text-white">{concert.city}</td>
+                      <td className="px-4 py-3 text-sm text-white">{concert.capacity}</td>
+                      <td className="px-4 py-3 text-sm text-white">{concert.date}</td>
+                      <td className="px-4 py-3 text-center">
                         <button className="inline-flex items-center justify-center rounded-lg bg-secondary px-5 py-2 text-sm font-bold text-secondary-foreground hover:bg-secondary/90 transition-colors whitespace-nowrap">
                           Замовити квиток
                         </button>
@@ -170,7 +170,7 @@ const Page: NextPage = () => {
         {/* Band Members */}
         <section id="gallery" className="py-20">
           <div className="mx-auto max-w-page-full">
-            <h2 className="text-2xl md:text-4xl font-extrabold mb-16 text-center text-foreground">
+            <h2 className="text-2xl md:text-4xl font-extrabold mb-14 text-center text-foreground">
               Учасники гурту
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-24 px-16">
