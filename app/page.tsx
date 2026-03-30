@@ -167,33 +167,37 @@ const Page: NextPage = () => {
           </div>
         </section>
 
-        <section id="gallery" className="mx-auto px-6 py-20 max-w-page-full">
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center text-foreground">
-            Учасники гурту
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {bandMembers.map((member) => (
-              <div key={member.name} className="group relative">
-                <div className="aspect-[3/4] relative rounded-2xl overflow-hidden border border-border/10 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
-                  <Image
-                    src={member.imgSrc}
-                    alt={member.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+        {/* Band Members */}
+        <section id="gallery" className="py-20">
+          <div className="mx-auto max-w-page-full">
+            <h2 className="text-2xl md:text-4xl font-extrabold mb-16 text-center text-foreground">
+              Учасники гурту
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-24 px-16">
+              {bandMembers.map((member) => (
+                <div key={member.name} className="group relative flex flex-col items-left bg-table-header rounded-xl border border-white/10 shadow-2xl transition-all duration-500 hover:bg-table-header/80">
+                  <div className="aspect-4/3 w-full relative rounded-xl rounded-b-none overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+                    <Image
+                      src={member.imgSrc}
+                      alt={member.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                  </div>
+                  <div className="text-start p-2">
+                    <p className="text-lg text-foreground/80 tracking-tight transition-colors group-hover:text-primary">
+                      {member.name}
+                    </p>
+                  </div>
                 </div>
-                <div className="mt-6 text-center">
-                  <p className="text-xl font-bold text-foreground/90 tracking-tight transition-colors group-hover:text-primary">
-                    {member.name}
-                  </p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
+        {/* About */}
         <section id="about" className="bg-linear-to-b from-muted/30 to-background py-24">
           <div className="mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16 items-center max-w-page-full">
             <div className="md:col-span-7">
@@ -216,7 +220,7 @@ const Page: NextPage = () => {
               </div>
             </div>
             <div className="md:col-span-5 relative">
-              <div className="relative rounded-2xl border border-border/10 overflow-hidden aspect-[4/3] shadow-2xl skew-y-1 transition-transform duration-500 hover:skew-y-0 hover:scale-[1.02]">
+              <div className="relative rounded-2xl border border-border/10 overflow-hidden aspect-4/3 shadow-2xl skew-y-1 transition-transform duration-500 hover:skew-y-0 hover:scale-[1.02]">
                 <Image
                   src="https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx71dmeCKfy7F6dY4wiWxfqopgOIuyz5B1hXebS"
                   alt="Concert crowd section"
