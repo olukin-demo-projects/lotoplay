@@ -31,7 +31,7 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
     env: {
-      NEXT_PUBLIC_DISABLE_PARALLAX: 'true',
+      NEXT_PUBLIC_TEST_ENVIRONMENT: 'true',
     },
   },
 });

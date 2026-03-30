@@ -3,8 +3,13 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useRef } from 'react';
+
 import GoogleMap from '@/components/GoogleMap';
 import { useParallax } from '@/hooks/useParallax';
+import { useVideoPreload } from '@/hooks/useVideoPreload';
+import { useVideoExpansion } from '@/hooks/useVideoExpansion';
+import { handleSmoothScroll } from '@/utils/handleSmoothScroll';
 
 const navigationLinks = [
   { name: 'Про гурт', href: '#about' },
@@ -35,22 +40,17 @@ const upcomingConcerts = [
   { city: 'Харків — ArtZavod', capacity: '500', date: '16.11.2025, 19:00' },
 ];
 
-const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-  e.preventDefault();
-  const targetElement = document.getElementById(targetId.replace('#', ''));
-  if (targetElement) {
-    const headerHeight = 80; // Approximate header height for offset
-    const targetPosition = targetElement.offsetTop - headerHeight;
-
-    window.scrollTo({
-      top: targetPosition,
-      behavior: 'smooth'
-    });
-  }
-};
+const ABOUT_VIDEO_SRC = 'https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx745GptCXoIrTbCxKyLgJAVz6XpnjtZekcwM9P';
 
 const Page: NextPage = () => {
   useParallax();
+  
+  const aboutVideoRef = useRef<HTMLVideoElement>(null);
+  const aboutSectionRef = useRef<HTMLElement>(null);
+  const videoExpanded = useVideoExpansion(aboutVideoRef, aboutSectionRef);
+
+  // Preload video when section enters viewport OR after 15s
+  useVideoPreload(aboutVideoRef, aboutSectionRef);
 
   return (
     <>
@@ -61,7 +61,7 @@ const Page: NextPage = () => {
       <div className="min-h-screen bg-background text-foreground flex flex-col antialiased">
 
         {/* Header/Nav */}
-        <header id="header" className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/10">
+        <header id="header" className="sticky top-0 z-60 bg-background/80 backdrop-blur-sm border-b border-border/10">
           <nav className="mx-auto px-6 py-6 flex items-center justify-between max-w-menu">
             <div className="flex items-center gap-2">
               <span className="text-xl font-black uppercase tracking-widest text-foreground">
@@ -170,7 +170,7 @@ const Page: NextPage = () => {
         {/* Band Members */}
         <section id="gallery" className="py-20">
           <div className="mx-auto max-w-page-full">
-            <h2 className="text-2xl md:text-4xl font-extrabold mb-14 text-center text-foreground">
+            <h2 className="text-2xl md:text-4xl font-extrabold mb-12 text-center text-foreground">
               Учасники гурту
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-24 px-16">
@@ -198,45 +198,62 @@ const Page: NextPage = () => {
         </section>
 
         {/* About */}
-        <section id="about" className="bg-linear-to-b from-muted/30 to-background py-24">
-          <div className="mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16 items-center max-w-page-full">
-            <div className="md:col-span-7">
-              <h2 className="text-4xl md:text-5xl font-bold mb-10 text-foreground">
-                Наша історія
-              </h2>
-              <div className="space-y-6 text-foreground/80 leading-relaxed text-lg">
-                <p>
-                  «Грим та Грім» народився з бажання створювати музику, яка відчувається серцем. Ми почали свій шлях у маленькій студії в центрі Києва, де кожен акорд, кожне слово було наповнене емоціями та переживаннями. Це було місце, де народжувались наші перші пісні, де ми вчились грати разом як єдиний організм.
-                </p>
-                <p>
-                  За роки нашої діяльності ми виступили на десятках сцен, від невеликих клубів до великих фестивалів. Наша музика — це поєднання традиційного року з сучасними елементами, що робить її унікальною та впізнаваною. Ми не боїмось експериментувати з звуком, додаючи електронні елементи або народні інструменти.
-                </p>
-                <p>
-                  Кожен наш виступ — це не просто концерт, а справжня подія, де ми ділимося своєю енергією з глядачами та створюємо неповторну атмосферу. Ми віримо, що музика має силу об’єднувати людей, створювати спільноти та надихати на зміни.
-                </p>
-                <p>
-                  Наш колектив складається з досвідчених музикантів, кожен з яких привносить свій унікальний стиль та бачення. Максим створює неймовірні гітарні рифи, Олена зачаровує своїм вокалом, а Тарас тримає ритм, який змушує серця битися в унісон з музикою.
-                </p>
+        <section id="about" ref={aboutSectionRef} className="section-gradient-1 py-16">
+          <div className="mx-auto px-6 max-w-page-full">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-8 text-foreground">
+              Наша історія
+            </h2>
+            <div className="space-y-6 text-foreground/90 leading-relaxed">
+              <div className={`relative float-right ml-8 mb-6 transition-all duration-500 ${videoExpanded ? 'fixed inset-0 w-full h-full z-50' : 'w-[calc(41.666667%+40px)] md:w-[calc(41.666667%+40px)] lg:w-[calc(33.333333%+40px)]'}`}>
+                <div
+                  className={`relative border border-border/10 overflow-hidden shadow-2xl transition-all duration-500 cursor-pointer ${
+                    videoExpanded 
+                      ? 'w-full h-full skew-y-0 scale-100' 
+                      : 'hover:skew-y-0 hover:scale-[1.02]'
+                  }`}
+                >
+                  {/* Static image — visible when not hovering */}
+                  <Image
+                    src="https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx71dmeCKfy7F6dY4wiWxfqopgOIuyz5B1hXebS"
+                    alt="Concert crowd section"
+                    loading="eager"
+                    width={1407}
+                    height={624}
+                    sizes="(max-width: 768px) 100vw, 41vw"
+                    className={`object-cover transition-opacity duration-500 ${videoExpanded ? 'opacity-0' : 'opacity-100'}`}
+                  />
+                  {/* Video — preloaded lazily, plays on hover */}
+                  <video
+                    ref={aboutVideoRef}
+                    src={ABOUT_VIDEO_SRC}
+                    preload="none"
+                    muted
+                    loop
+                    playsInline
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${videoExpanded ? 'opacity-100' : 'opacity-0'}`}
+                  />
+                </div>
+                <div className={`absolute -bottom-6 -left-6 -z-10 w-full h-full bg-primary/10 rounded-2xl border border-primary/20 ${videoExpanded ? 'hidden' : ''}`}></div>
               </div>
-            </div>
-            <div className="md:col-span-5 relative">
-              <div className="relative rounded-2xl border border-border/10 overflow-hidden aspect-4/3 shadow-2xl skew-y-1 transition-transform duration-500 hover:skew-y-0 hover:scale-[1.02]">
-                <Image
-                  src="https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx71dmeCKfy7F6dY4wiWxfqopgOIuyz5B1hXebS"
-                  alt="Concert crowd section"
-                  fill
-                  loading="eager"
-                  sizes="(max-width: 768px) 100vw, 41vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-6 -left-6 -z-10 w-full h-full bg-primary/10 rounded-2xl border border-primary/20"></div>
+              <p>
+                «Грим та Грім» народився з бажання створювати музику, яка відчувається серцем. Ми почали свій шлях у маленькій студії в центрі Києва, де кожен акорд, кожне слово було наповнене емоціями та переживаннями. Це було місце, де народжувались наші перші пісні, де ми вчились грати разом як єдиний організм.
+              </p>
+              <p>
+                За роки нашої діяльності ми виступили на десятках сцен, від невеликих клубів до великих фестивалів. Наша музика — це поєднання традиційного року з сучасними елементами, що робить її унікальною та впізнаваною. Ми не боїмось експериментувати зі звуком, додаючи електронні елементи або народні інструменти.
+              </p>
+              
+              <p>
+                Кожен наш виступ — це не просто концерт, а справжня подія, де ми ділимося своєю енергією з глядачами та створюємо неповторну атмосферу. Ми віримо, що музика має силу об&apos;єднувати людей, створювати спільноти та надихати на зміни.
+              </p>
+              <p>
+                Наш колектив складається з досвідчених музикантів, кожен з яких привносить свій унікальний стиль та бачення. Максим створює неймовірні гітарні рифи, Олена зачаровує своїм вокалом, а Тарас тримає ритм, який змушує серця битися в унісон з музикою.
+              </p>
             </div>
           </div>
         </section>
 
         {/* Contact Us */}
-        <section id="contact" className="bg-linear-to-t from-muted/30 to-background py-24">
+        <section id="contact" className="section-gradient-2 py-24">
           <div className="mx-auto px-6 max-w-page-full">
             <div className="max-w-2xl mx-auto text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">

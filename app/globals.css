@@ -87,6 +87,16 @@
   }
 }
 
+@utility section-gradient-1 {
+  background: #121E22;
+  background: linear-gradient(135deg,rgba(18, 30, 34, 1) 0%, rgba(26, 23, 29, 1) 50%, rgba(30, 17, 22, 1) 100%);
+}
+
+@utility section-gradient-2 {
+  background: #260F16;
+  background: linear-gradient(135deg, rgba(38, 15, 22, 1) 0%, rgba(29, 26, 33, 1) 50%, rgba(18, 33, 42, 1) 100%);
+}
+
 @keyframes brutalist-pulse {
   0% {
     box-shadow: 0px 0px 20px 5px var(--btn-brutalist-color);
