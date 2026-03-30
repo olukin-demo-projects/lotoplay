@@ -253,48 +253,60 @@ const Page: NextPage = () => {
         </section>
 
         {/* Contact Us */}
-        <section id="contact" className="section-gradient-2 py-24">
+        <section id="contact" className="section-gradient-2 py-20">
           <div className="mx-auto px-6 max-w-page-full">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+            <div className="max-w-2xl mx-auto text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-extrabold mb-4 text-foreground">
                 Зв&apos;яжіться з нами
               </h2>
-              <p className="text-foreground/60">Хочеш заказати виступ або маєш питання? Пиши!</p>
+              <p className="text-foreground/60 text-lg">Хочеш заказати виступ або маєш питання? Пиши!</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
               {/* Contact Form */}
-              <div className="bg-card/40 backdrop-blur-xl p-10 rounded-3xl border border-border/10 shadow-2xl">
-                <form className="space-y-6">
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-widest text-foreground/50 ml-1">Ім&apos;я</label>
-                    <input type="text" placeholder="Ваше ім'я" className="w-full px-6 py-4 bg-input/50 border border-border/10 rounded-xl text-foreground placeholder:text-muted-foreground/40 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all" />
+              <form>
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div>
+                    <label htmlFor="name" className="text-sm tracking-widest text-foreground/70 mb-2 block">Ім&apos;я</label>
+                    <input id="name" type="text" placeholder="Ваше ім'я" autoComplete="name" className="w-full px-4 py-2 bg-form-input-bg border border-form-input-border rounded-lg text-foreground placeholder:text-md placeholder:font-semibold placeholder:text-muted-foreground/60 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all" />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-widest text-foreground/50 ml-1">Email</label>
-                    <input type="email" placeholder="example@mail.com" className="w-full px-6 py-4 bg-input/50 border border-border/10 rounded-xl text-foreground placeholder:text-muted-foreground/40 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all" />
+                  <div>
+                    <label htmlFor="email" className="text-sm tracking-widest text-foreground/70 mb-2 block">Email</label>
+                    <input id="email" type="email" placeholder="example@mail.com" autoComplete="email" className="w-full px-4 py-2 bg-form-input-bg border border-form-input-border rounded-lg text-foreground placeholder:text-md placeholder:font-semibold placeholder:text-muted-foreground/60 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all" />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-widest text-foreground/50 ml-1">Повідомлення</label>
-                    <textarea placeholder="Розкажи про свої ідеї..." rows={5} className="w-full px-6 py-4 bg-input/50 border border-border/10 rounded-xl text-foreground placeholder:text-muted-foreground/40 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all resize-none"></textarea>
-                  </div>
-                  <button type="submit" className="w-full inline-flex items-center justify-center rounded-xl bg-secondary py-5 text-base font-bold text-secondary-foreground uppercase tracking-widest shadow-2xl hover:scale-[1.02] active:scale-95 transition-all">
-                    Відправити
-                  </button>
-                </form>
-              </div>
+                </div>
+                <div>
+                  <label htmlFor="message" className="text-sm tracking-widest text-foreground/70 mb-2 block">Повідомлення</label>
+                  <textarea id="message" placeholder="Розкажи про свої ідеї..." rows={3} autoComplete="off" className="w-full px-4 py-2 bg-form-input-bg border border-form-input-border rounded-lg text-foreground placeholder:text-md placeholder:font-semibold placeholder:text-muted-foreground/60 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all resize"></textarea>
+                </div>
+                <button type="submit" className="inline-flex items-center justify-center rounded-xl bg-secondary px-6 py-3 my-4 text-base font-bold text-secondary-foreground tracking-widest shadow-2xl hover:scale-[1.02] active:scale-95 transition-all">
+                  Відправити
+                </button>
+              </form>
 
               {/* Google Map */}
               <div className="space-y-6">
-                <div className="bg-card/40 backdrop-blur-xl rounded-3xl border border-border/10 shadow-2xl overflow-hidden aspect-square relative group">
-                  <GoogleMap
-                    center={{ lat: 50.4501, lng: 30.5234 }}
-                    zoom={14}
-                    className="w-full h-full grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-                  />
-                  <div className="absolute top-6 left-6 bg-background/80 backdrop-blur-md px-6 py-3 rounded-full text-xs font-bold text-foreground border border-border/10 shadow-2xl tracking-widest uppercase">
-                    Наше місцезнаходження
+                <div className="bg-form-input-bg backdrop-blur-xl rounded-lg py-3 px-1 border border-form-input-border shadow-2xl">
+                  {/* Title */}
+                  <div className="px-4 py-3">
+                    <h3 className="text-xl font-bold text-foreground tracking-widest">
+                      Наше місцезнаходження
+                    </h3>
+                  </div>
+                  {/* Map */}
+                  <div className="p-4">
+                    <div className="relative group w-full h-full rounded-lg">
+                      <GoogleMap
+                        center={{ lat: 50.401279090902456, lng: 30.529450776914626 }}
+                        zoom={13.1}
+                        placeName="Restaurant%20ichi"
+                        placeId="0x40d4cf862389df53%3A0xa83a86c350aa5dcd"
+                        language="en"
+                        region="ua"
+                        className="w-full h-full rounded-lg object-cover transition-all duration-700"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
