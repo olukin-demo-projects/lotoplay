@@ -2,7 +2,7 @@
 
 import type { NextPage } from 'next';
 import Image from "next/image";
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 
 import { useParallax } from '@/hooks/useParallax';
 import { useVideoPreload } from '@/hooks/useVideoPreload';
@@ -260,7 +260,7 @@ const Page: NextPage = () => {
         </section>
 
         {/* Contact Us */}
-        <section id="contact" aria-labelledby="contact-heading" className="section-gradient-2 py-20">
+        <section id="contact" aria-labelledby="contact-heading" className="section-gradient-2 py-18">
           <div className="mx-auto px-6 max-w-page-full">
             <div className="max-w-2xl mx-auto text-center mb-8">
               <h2 id="contact-heading" className="text-2xl md:text-3xl font-extrabold mb-4 text-foreground">
@@ -309,7 +309,7 @@ const Page: NextPage = () => {
               <div className="space-y-6">
                 <div className="bg-form-input-bg backdrop-blur-xl rounded-lg py-3 px-1 border border-form-input-border shadow-2xl">
                   {/* Title */}
-                  <div className="px-4 py-3">
+                  <div className="px-4 py-2">
                     <h3 className="text-xl font-bold text-foreground tracking-widest">
                       Наше місцезнаходження
                     </h3>
@@ -335,14 +335,23 @@ const Page: NextPage = () => {
         </section>
 
         <footer id="footer" role="contentinfo" className="bg-background border-t border-border/10 py-12">
-          <div className="mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10 text-sm text-muted-foreground max-w-page-full">
-            <div className="text-center md:text-left space-y-2">
-              <p className="text-base font-bold text-foreground">© 2025 «Грим та Грім». Всі права захищені.</p>
-              <p className="text-foreground/60">booking@lotoplay.com | +38 (099) 123-45-67</p>
+          <div className="mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10 text-sm text-muted-foreground max-w-page-full">
+            <div className="text-center md:text-left space-y-8">
+              <p className="text-base text-foreground/80">© 2025 «Грим та Грім». Всі права захищені.</p>
+              <p className="text-foreground text-base">
+                <a href="mailto:booking@lotoplay.com" className="hover:text-primary transition-colors">booking@lotoplay.com</a> | <a href="tel:+380991234567" className="hover:text-primary transition-colors">+38 (099) 123-45-67</a>
+              </p>
             </div>
-            <div className="flex gap-8">
-              {['Instagram', 'YouTube', 'Facebook'].map(link => (
-                <a key={link} href="#" className="font-medium text-foreground/70 hover:text-primary transition-colors text-base">{link}</a>
+            <div className="flex items-center gap-2">
+              {[
+                { name: 'Instagram', url: 'https://www.instagram.com/reel/C_dwFAcPNkT/' },
+                { name: 'YouTube', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
+                { name: 'Facebook', url: 'https://www.facebook.com/groups/1199210663926081/posts/1199670603880087/' }
+              ].map((link, index) => (
+                <React.Fragment key={link.name}>
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" className="font-medium text-foreground/70 hover:text-primary transition-colors text-base">{link.name}</a>
+                  {index < 2 && <span className="text-foreground/70 text-sm">•</span>}
+                </React.Fragment>
               ))}
             </div>
           </div>

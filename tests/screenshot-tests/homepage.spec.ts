@@ -12,6 +12,9 @@ test.beforeAll(async ({ browser }) => {
   await sharedPage.goto('/');
   await sharedPage.waitForLoadState('networkidle');
 
+  // Wait for Google Maps to load (wait for loading placeholder to disappear)
+  await sharedPage.waitForSelector('text=Завантаження мапи...', { state: 'hidden', timeout: 10000 });
+
   // Disable animations/transitions and calculate page height
   const fullHeight = await sharedPage.evaluate(() => {
     const style = document.createElement('style');
@@ -44,7 +47,7 @@ const screenshotOptions = {
 };
 
 test('homepage full page screenshot', async () => {
-  await expect(sharedPage).toHaveScreenshot('testove_lotoplay.png', {
+  await expect(sharedPage).toHaveScreenshot('testove-lotoplay.png', {
     ...screenshotOptions,
     fullPage: true
   });

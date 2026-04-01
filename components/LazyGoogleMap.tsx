@@ -17,11 +17,17 @@ const LazyGoogleMap: React.FC<LazyGoogleMapProps> = (props) => {
 
   useEffect(() => {
     // Load map after page load to improve Lighthouse score
-    const timer = setTimeout(() => {
+    // Load immediately in testing environment
+    if (process.env.NEXT_PUBLIC_TEST_ENVIRONMENT === 'true') {
       setShouldLoad(true);
-    }, 2000); // Load after 2 seconds
+      return;
+    } else {
+      const timer = setTimeout(() => {
+        setShouldLoad(true);
+      }, 2000); // Load after 2 seconds
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   // Memoize the lazy component so it's only created once
