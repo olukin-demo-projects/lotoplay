@@ -1,55 +1,64 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export const useVideoExpansion = (
   videoRef: React.RefObject<HTMLVideoElement | null>,
   sectionRef: React.RefObject<HTMLElement | null>
 ) => {
   const [videoExpanded, setVideoExpanded] = useState(false);
+  const isExpandedRef = useRef(false);
+  const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Disable video expansion in test environments
-    if (process.env.NEXT_PUBLIC_TEST_ENVIRONMENT === 'true') {
-      return;
-    }
+    if (process.env.NEXT_PUBLIC_TEST_ENVIRONMENT === 'true') return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          // Only expand when section is fully visible (90%+)
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.9) {
-            setVideoExpanded(true);
-            if (videoRef.current) {
-              videoRef.current.currentTime = 0;
-              videoRef.current.play();
-            }
-          }
-          // Only collapse when scrolling back up (section is less than 50% visible from top)
-          else if (entry.intersectionRatio < 0.5 && entry.boundingClientRect.top > 0) {
-            setVideoExpanded(false);
-            if (videoRef.current) {
-              videoRef.current.pause();
-              videoRef.current.currentTime = 0;
-            }
-          }
-        });
-      },
-      {
-        threshold: [0.5, 0.9], // 50% and 90% visibility
-        rootMargin: '-60px 0px 0px 0px' // Account for sticky header
+    const handleScroll = () => {
+      // Clear existing timeout
+      if (debounceTimeout.current) {
+        clearTimeout(debounceTimeout.current);
       }
-    );
 
-    const currentRef = sectionRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
+      // Debounce the scroll handling
+      debounceTimeout.current = setTimeout(() => {
+        const rect = sectionRef.current?.getBoundingClientRect();
+        if (!rect) return;
+
+        const viewportHeight = window.innerHeight;
+        const blockTop = rect.top;
+
+        // Block is visible in viewport
+        const screenHalf = viewportHeight / 2;
+
+        // EXPAND: When scrolling down and block top reaches half of screen
+        if (!isExpandedRef.current && blockTop <= screenHalf) {
+          setVideoExpanded(true);
+          isExpandedRef.current = true;
+          if (videoRef.current) {
+            videoRef.current.currentTime = 0;
+            videoRef.current.play();
+          }
+        }
+
+        // COLLAPSE: Only when scrolling up AND block top goes above half of screen
+        if (isExpandedRef.current && blockTop > screenHalf + 200) {
+          setVideoExpanded(false);
+          isExpandedRef.current = false;
+          if (videoRef.current) {
+            videoRef.current.pause();
+            videoRef.current.currentTime = 0;
+          }
+        }
+      }, 30); // 30ms debounce delay
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
+      if (debounceTimeout.current) {
+        clearTimeout(debounceTimeout.current);
       }
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [sectionRef, videoRef]);
 
   return videoExpanded;
 };

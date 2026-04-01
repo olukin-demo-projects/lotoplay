@@ -11,7 +11,17 @@
     "test:screenshot": "playwright test --update-snapshots",
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
-    "test:report": "playwright show-report"
+    "test:report": "playwright show-report",
+    "react-doctor": "react-doctor . --verbose",
+    "react-doctor:diff": "react-doctor . --verbose --diff",
+    "lighthouse": "npx lighthouse --port=9222 --view --output=html --output-path=./reports/lighthouse.html http://localhost:3000",
+    "lighthouse:setup": "google-chrome --headless --remote-debugging-port=9222",
+    "lighthouse:json": "npx lighthouse --port=9222 --output=json --output-path=./reports/lighthouse.json http://localhost:3000",
+    "lighthouse:mobile": "npx lighthouse --port=9222 --view --output=html --output-path=./reports/lighthouse-mobile.html --form-factor=mobile http://localhost:3000",
+    "lighthouse:desktop": "npx lighthouse --port=9222 --view --output=html --output-path=./reports/lighthouse-desktop.html --form-factor=desktop http://localhost:3000",
+    "lighthouse:mobile-json": "npx lighthouse --port=9222 --output=json --output-path=./reports/lighthouse-mobile.json --form-factor=mobile http://localhost:3000",
+    "lighthouse:desktop-json": "npx lighthouse --port=9222 --output=json --output-path=./reports/lighthouse-desktop.json --form-factor=desktop http://localhost:3000",
+    "lighthouse:all": "npm run lighthouse:mobile && npm run lighthouse:desktop"
   },
   "dependencies": {
     "@tabler/icons-react": "^3.41.0",
@@ -21,6 +31,8 @@
     "radix-ui": "^1.4.3",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "react-schemaorg": "^2.0.1",
+    "schema-dts": "^2.0.0",
     "shadcn": "^4.1.1",
     "tailwind-merge": "^3.5.0",
     "tw-animate-css": "^1.4.0"
@@ -33,8 +45,9 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.1",
+    "react-doctor": "^0.0.30",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be"
+  "packageManager": "pnpm@10.33.0"
 }

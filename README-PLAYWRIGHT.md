@@ -1,80 +1,80 @@
-# Playwright Screenshot Testing
+# 🎭 Playwright Screenshot Testing
 
-This project is configured with Playwright for automated screenshot diff comparison testing.
+Проект налаштований з Playwright для автоматизованого тестування скріншотів та порівняння змін.
 
-## Setup
+## Налаштування
 
-Playwright has been installed and configured with screenshot testing capabilities.
+Playwright встановлено та налаштовано з можливістю тестування скріншотів.
 
-## Available Scripts
+## Доступні команди
 
-- `pnpm test` - Run all Playwright tests
-- `pnpm test:screenshot` - Run tests and update snapshots
-- `pnpm test:headed` - Run tests in headed mode (show browser)
-- `pnpm test:debug` - Run tests in debug mode
-- `pnpm test:report` - Open the HTML test report
+- `pnpm test` - Запустити всі тести Playwright
+- `pnpm test:screenshot` - Запустити тести та оновити скріншоти
+- `pnpm test:headed` - Запустити тести в режимі headed (показати браузер)
+- `pnpm test:debug` - Запустити тести в режимі відлагодження
+- `pnpm test:report` - Відкрити HTML звіт тестів
 
-## Running Tests
+## Запуск тестів
 
-### First Time - Generate Baseline Screenshots
+### Перший запуск - Генерація базових скріншотів
 
 ```bash
-# Run tests to generate initial baseline screenshots
+# Запустити тести для генерації початкових скріншотів
 pnpm test:screenshot
 ```
 
-### Subsequent Runs - Compare Against Baseline
+### Подальші запуски - Порівняння з базою
 
 ```bash
-# Run tests to compare against existing screenshots
+# Запустити тести для порівняння з існуючими скріншотами
 pnpm test
 ```
 
-If screenshots don't match, the test will fail and you can review the diff in:
-- `test-results/` - For individual test results
-- `playwright-report/` - For the HTML report
+Якщо скріншоти не збігаються, тест не пройде, і ви можете переглянути різницю в:
+- `test-results/` - Для результатів окремих тестів
+- `playwright-report/` - Для HTML звіту
 
-### Updating Screenshots
+### Оновлення скріншотів
 
-When you've made intentional UI changes and want to update the baseline:
+Коли ви внесли навмисні зміни в UI і хочете оновити базу:
 
 ```bash
 pnpm test:screenshot
 ```
 
-## Test Structure
+## Структура тестів
 
-- `tests/screenshot-tests/` - Contains all screenshot tests
-- `tests/screenshot-tests/homepage.spec.ts` - Homepage screenshot tests
-- `tests/screenshot-tests/components.spec.ts` - Component-level screenshot tests
+- `tests/screenshot-tests/` - Містить всі тести скріншотів
+- `tests/screenshot-tests/homepage.spec.ts` - Тести скріншотів головної сторінки
+- `tests/screenshot-tests/components.spec.ts` - Тести скріншотів компонентів
 
-## Adding New Screenshot Tests
+## Додавання нових тестів скріншотів
 
-1. Create a new `.spec.ts` file in `tests/screenshot-tests/`
-2. Use `await expect(page).toHaveScreenshot('name.png')` for full-page screenshots
-3. Use `await expect(element).toHaveScreenshot('name.png')` for component screenshots
+1. Створіть новий `.spec.ts` файл в `tests/screenshot-tests/`
+2. Використовуйте `await expect(page).toHaveScreenshot('name.png')` для скріншотів всієї сторінки
+3. Використовуйте `await expect(element).toHaveScreenshot('name.png')` для скріншотів компонентів
 
-Example:
+Приклад:
 
 ```typescript
 import { test, expect } from '@playwright/test';
 
-test('my feature matches baseline', async ({ page }) => {
+test('мої функції відповідають базі', async ({ page }) => {
   await page.goto('/my-feature');
   await page.waitForLoadState('networkidle');
   await expect(page).toHaveScreenshot('my-feature.png');
 });
 ```
 
-## Configuration
+## Конфігурація
 
-Playwright is configured to:
-- Test against Chrome, Firefox, Safari, and mobile viewports
-- Start the dev server automatically
-- Take screenshots on failure
-- Generate HTML reports
-- Retry failed tests on CI
+Playwright налаштовано для:
+- Тестування в Chrome, Firefox, Safari та мобільних viewport
+- Автоматичного запуску dev сервера
+- Знімання скріншотів при помилках
+- Генерації HTML звітів
+- Повторних спроб невдалих тестів в CI
 
 ## CI/CD
 
-The configuration is ready for CI/CD with automatic browser installation.
+Конфігурація готова для CI/CD з автоматичною установкою браузерів.

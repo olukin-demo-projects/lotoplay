@@ -125,7 +125,7 @@
   --highlight: oklch(0.84 0.15 210);
   /* Band Yellow */
   --primary-foreground: oklch(0.15 0.01 250);
-  --secondary: oklch(0.6 0.23 15);
+  --secondary: oklch(0.4595 0.1734 11.68);
   /* Action Pink */
   --secondary-foreground: oklch(0.98 0 0);
   --muted: oklch(0.963 0.002 197.1);
@@ -170,7 +170,7 @@
   --highlight: oklch(0.84 0.15 210);
   --primary-foreground: #0e0e12;
   /* Secondary: The Pink "Замовити квиток" buttons in the table */
-  --secondary: oklch(0.6 0.23 15);
+  --secondary: oklch(0.4595 0.1734 11.68);
   --secondary-foreground: oklch(0.98 0 0);
   /* Card/Muted: The semi-transparent dark sections in the UI */
   --muted: oklch(0.25 0.01 250);

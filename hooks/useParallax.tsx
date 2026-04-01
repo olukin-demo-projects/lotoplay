@@ -19,7 +19,7 @@ export const useParallax = (speedMultiplier: number = 0.5) => {
     handleScroll();
 
     // Add scroll listener
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Cleanup
     return () => window.removeEventListener('scroll', handleScroll);

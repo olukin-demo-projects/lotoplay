@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lighthouse Performance Report - Грим та Грім</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        .placeholder {
+            padding: 60px 30px;
+            text-align: center;
+        }
+        .placeholder-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        .placeholder h2 {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        .placeholder p {
+            color: #888;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .command-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            color: #333;
+        }
+        .command-label {
+            color: #666;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+        .stat-score {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .performance { color: #0cce6b; }
+        .accessibility { color: #0cce6b; }
+        .best-practices { color: #0cce6b; }
+        .seo { color: #0cce6b; }
+        .warning { color: #ffa400; }
+        .error { color: #ff4e42; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎸 Lighthouse Performance Report</h1>
+            <p>Грим та Грім - Офіційний сайт</p>
+        </div>
+        
+        <div class="placeholder">
+            <div class="placeholder-icon">📊</div>
+            <h2>Lighthouse Report Placeholder</h2>
+            <p>
+                Цей файл буде перезаписаний з результатами Lighthouse тестування.
+                Запустіть тестування за допомогою команди <code>pnpm lighthouse</code> 
+                для генерації повного звіту про продуктивність сайту.
+            </p>
+            
+            <div class="command-box">
+                <div class="command-label">Для WSL2 (запустіть спочатку Chrome)</div>
+                <div>google-chrome --headless --remote-debugging-port=9222</div>
+            </div>
+            
+            <div class="command-box">
+                <div class="command-label">Запуск Lighthouse тестування</div>
+                <div>pnpm lighthouse</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-score performance">—</div>
+                    <div class="stat-label">Performance</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-score accessibility">—</div>
+                    <div class="stat-label">Accessibility</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-score best-practices">—</div>
+                    <div class="stat-label">Best Practices</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-score seo">—</div>
+                    <div class="stat-label">SEO</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

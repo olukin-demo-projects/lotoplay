@@ -1,15 +1,20 @@
 'use client';
 
 import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
+import Image from "next/image";
 import { useRef } from 'react';
 
-import GoogleMap from '@/components/GoogleMap';
 import { useParallax } from '@/hooks/useParallax';
 import { useVideoPreload } from '@/hooks/useVideoPreload';
 import { useVideoExpansion } from '@/hooks/useVideoExpansion';
 import { handleSmoothScroll } from '@/utils/handleSmoothScroll';
+
+import SEOHead from '@/components/SEOHead';
+import GoogleMap from '@/components/LazyGoogleMap';
+import { FormInput } from '@/components/ui/form-input';
+import { FormTextarea } from '@/components/ui/form-textarea';
+import { Button } from '@/components/ui/button';
+import { VideoContainer, VideoWrapper, VideoImage, VideoElement, VideoBackdrop } from "@/components/ui/video-container";
 
 const navigationLinks = [
   { name: 'Про гурт', href: '#about' },
@@ -47,22 +52,21 @@ const Page: NextPage = () => {
   
   const aboutVideoRef = useRef<HTMLVideoElement>(null);
   const aboutSectionRef = useRef<HTMLElement>(null);
-  const videoExpanded = useVideoExpansion(aboutVideoRef, aboutSectionRef);
+  const aboutTextRef = useRef<HTMLParagraphElement>(null);
+  const videoExpanded = useVideoExpansion(aboutVideoRef, aboutTextRef);
 
   // Preload video when section enters viewport OR after 15s
   useVideoPreload(aboutVideoRef, aboutSectionRef);
 
   return (
     <>
-      <Head>
-        <title>Гурд Грим та Грім | Офіційний сайт</title>
-      </Head>
+      <SEOHead upcomingConcerts={upcomingConcerts} />
 
       <div className="min-h-screen bg-background text-foreground flex flex-col antialiased">
 
         {/* Header/Nav */}
-        <header id="header" className="sticky top-0 z-60 bg-background/80 backdrop-blur-sm border-b border-border/10">
-          <nav className="mx-auto px-6 py-6 flex items-center justify-between max-w-menu">
+        <header id="header" role="banner" className="sticky top-0 z-60 bg-background/80 backdrop-blur-sm border-b border-border/10">
+          <nav aria-label="Основне меню" className="mx-auto px-6 py-6 flex items-center justify-between max-w-menu">
             <div className="flex items-center gap-2">
               <span className="text-xl font-black uppercase tracking-widest text-foreground">
                 G&G
@@ -84,7 +88,7 @@ const Page: NextPage = () => {
         </header>
 
         {/* Hero Section */}
-        <section id="hero" className="relative h-[600px] flex flex-col justify-center items-center text-left overflow-hidden">
+        <main id="hero" role="main" className="relative h-[600px] flex flex-col justify-center items-center text-left overflow-hidden">
           {/* Background Image (with parallax effect) */}
           <div className="absolute inset-0 z-0 will-change-transform">
             <div className="absolute inset-0 bg-black/40 z-10" />
@@ -95,6 +99,7 @@ const Page: NextPage = () => {
               sizes="100vw"
               className="object-cover saturate-[.6] brightness-125 blur-[1px]"
               priority
+              fetchPriority="high"
               style={{
                 transform: 'translateY(var(--scroll-y))',
                 willChange: 'transform'
@@ -117,25 +122,30 @@ const Page: NextPage = () => {
                 <span className="text-highlight font-semibold">Наші концерти</span> — це завжди контакт з залом, драйв і емоції. Приєднуйся до нас на найближчих виступах і відчуй цей саунд наживо!
               </p>
             </div>
-            <a
-              href="#concerts"
-              onClick={(e) => handleSmoothScroll(e, '#concerts')}
-              className="inline-flex items-center justify-center rounded-lg px-8 py-3 text-base font-bold text-primary-foreground uppercase tracking-wider transition-all btn-glow btn-brutalist"
+            <Button
+              asChild
+              variant="cta"
+              size="cta"
             >
-              Замовити квиток
-            </a>
+              <a
+                href="#concerts"
+                onClick={(e) => handleSmoothScroll(e, '#concerts')}
+              >
+                Замовити квиток
+              </a>
+            </Button>
           </div>
-        </section>
+        </main>
 
         {/* Upcoming Concerts */}
-        <section id="concerts" className="py-16">
+        <section id="concerts" aria-labelledby="concerts-heading" className="py-16">
           <div className="mx-auto px-6 max-w-page-full">
             <div className="overflow-x-auto rounded-xl border-2 border-table-border backdrop-blur-md overflow-hidden">
               <table className="w-full text-left">
                 <thead className="bg-table-header border-b-2 border-table-border">
                   <tr>
                     <th colSpan={4} className="p-4">
-                      <h2 className="text-xl md:text-2xl font-bold text-foreground">
+                      <h2 id="concerts-heading" className="text-xl md:text-2xl font-bold text-foreground">
                         Найближчі концерти
                       </h2>
                     </th>
@@ -155,9 +165,12 @@ const Page: NextPage = () => {
                       <td className="px-4 py-3 text-sm text-white">{concert.capacity}</td>
                       <td className="px-4 py-3 text-sm text-white">{concert.date}</td>
                       <td className="px-4 py-3 text-center">
-                        <button className="inline-flex items-center justify-center rounded-lg bg-secondary px-5 py-2 text-sm font-bold text-secondary-foreground hover:bg-secondary/90 transition-colors whitespace-nowrap">
+                        <Button 
+                          variant="secondary" 
+                          className="rounded-lg px-5 py-2 font-bold hover:bg-secondary/90"
+                        >
                           Замовити квиток
-                        </button>
+                        </Button>
                       </td>
                     </tr>
                   ))}
@@ -168,9 +181,9 @@ const Page: NextPage = () => {
         </section>
 
         {/* Band Members */}
-        <section id="gallery" className="py-20">
+        <section id="gallery" aria-labelledby="gallery-heading" className="py-20">
           <div className="mx-auto max-w-page-full">
-            <h2 className="text-2xl md:text-4xl font-extrabold mb-12 text-center text-foreground">
+            <h2 id="gallery-heading" className="text-2xl md:text-4xl font-extrabold mb-12 text-center text-foreground">
               Учасники гурту
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-24 px-16">
@@ -198,44 +211,38 @@ const Page: NextPage = () => {
         </section>
 
         {/* About */}
-        <section id="about" ref={aboutSectionRef} className="section-gradient-1 py-16">
+        <section id="about" ref={aboutSectionRef} aria-labelledby="about-heading" className="section-gradient-1 py-16">
           <div className="mx-auto px-6 max-w-page-full">
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-8 text-foreground">
+            <h2 id="about-heading" className="text-3xl md:text-4xl font-extrabold mb-8 text-foreground">
               Наша історія
             </h2>
             <div className="space-y-6 text-foreground/90 leading-relaxed">
-              <div className={`relative float-right ml-8 mb-6 transition-all duration-500 ${videoExpanded ? 'fixed inset-0 w-full h-full z-50' : 'w-[calc(41.666667%+40px)] md:w-[calc(41.666667%+40px)] lg:w-[calc(33.333333%+40px)]'}`}>
-                <div
-                  className={`relative border border-border/10 overflow-hidden shadow-2xl transition-all duration-500 cursor-pointer ${
-                    videoExpanded 
-                      ? 'w-full h-full skew-y-0 scale-100' 
-                      : 'hover:skew-y-0 hover:scale-[1.02]'
-                  }`}
-                >
+              <VideoContainer expanded={videoExpanded}>
+                <VideoWrapper expanded={videoExpanded}>
                   {/* Static image — visible when not hovering */}
-                  <Image
+                  <VideoImage
+                    expanded={videoExpanded}
                     src="https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx71dmeCKfy7F6dY4wiWxfqopgOIuyz5B1hXebS"
                     alt="Concert crowd section"
                     loading="eager"
                     width={1407}
                     height={624}
                     sizes="(max-width: 768px) 100vw, 41vw"
-                    className={`object-cover transition-opacity duration-500 ${videoExpanded ? 'opacity-0' : 'opacity-100'}`}
                   />
                   {/* Video — preloaded lazily, plays on hover */}
-                  <video
+                  <VideoElement
+                    expanded={videoExpanded}
                     ref={aboutVideoRef}
                     src={ABOUT_VIDEO_SRC}
                     preload="none"
                     muted
                     loop
                     playsInline
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${videoExpanded ? 'opacity-100' : 'opacity-0'}`}
                   />
-                </div>
-                <div className={`absolute -bottom-6 -left-6 -z-10 w-full h-full bg-primary/10 rounded-2xl border border-primary/20 ${videoExpanded ? 'hidden' : ''}`}></div>
-              </div>
-              <p>
+                </VideoWrapper>
+                <VideoBackdrop expanded={videoExpanded} />
+              </VideoContainer>
+              <p ref={aboutTextRef}>
                 «Грим та Грім» народився з бажання створювати музику, яка відчувається серцем. Ми почали свій шлях у маленькій студії в центрі Києва, де кожен акорд, кожне слово було наповнене емоціями та переживаннями. Це було місце, де народжувались наші перші пісні, де ми вчились грати разом як єдиний організм.
               </p>
               <p>
@@ -253,10 +260,10 @@ const Page: NextPage = () => {
         </section>
 
         {/* Contact Us */}
-        <section id="contact" className="section-gradient-2 py-20">
+        <section id="contact" aria-labelledby="contact-heading" className="section-gradient-2 py-20">
           <div className="mx-auto px-6 max-w-page-full">
             <div className="max-w-2xl mx-auto text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-extrabold mb-4 text-foreground">
+              <h2 id="contact-heading" className="text-2xl md:text-3xl font-extrabold mb-4 text-foreground">
                 Зв&apos;яжіться з нами
               </h2>
               <p className="text-foreground/60 text-lg">Хочеш заказати виступ або маєш питання? Пиши!</p>
@@ -265,24 +272,37 @@ const Page: NextPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
               {/* Contact Form */}
-              <form>
+              <form role="form" aria-labelledby="contact-heading">
                 <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div>
-                    <label htmlFor="name" className="text-sm tracking-widest text-foreground/70 mb-2 block">Ім&apos;я</label>
-                    <input id="name" type="text" placeholder="Ваше ім'я" autoComplete="name" className="w-full px-4 py-2 bg-form-input-bg border border-form-input-border rounded-lg text-foreground placeholder:text-md placeholder:font-semibold placeholder:text-muted-foreground/60 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all" />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="text-sm tracking-widest text-foreground/70 mb-2 block">Email</label>
-                    <input id="email" type="email" placeholder="example@mail.com" autoComplete="email" className="w-full px-4 py-2 bg-form-input-bg border border-form-input-border rounded-lg text-foreground placeholder:text-md placeholder:font-semibold placeholder:text-muted-foreground/60 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all" />
-                  </div>
+                  <FormInput
+                    id="name"
+                    type="text"
+                    placeholder="Ваше ім'я"
+                    autoComplete="name"
+                    label="Ім'я"
+                  />
+                  <FormInput
+                    id="email"
+                    type="email"
+                    placeholder="example@mail.com"
+                    autoComplete="email"
+                    label="Email"
+                  />
                 </div>
-                <div>
-                  <label htmlFor="message" className="text-sm tracking-widest text-foreground/70 mb-2 block">Повідомлення</label>
-                  <textarea id="message" placeholder="Розкажи про свої ідеї..." rows={3} autoComplete="off" className="w-full px-4 py-2 bg-form-input-bg border border-form-input-border rounded-lg text-foreground placeholder:text-md placeholder:font-semibold placeholder:text-muted-foreground/60 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none transition-all resize"></textarea>
-                </div>
-                <button type="submit" className="inline-flex items-center justify-center rounded-xl bg-secondary px-6 py-3 my-4 text-base font-bold text-secondary-foreground tracking-widest shadow-2xl hover:scale-[1.02] active:scale-95 transition-all">
+                <FormTextarea
+                  id="message"
+                  placeholder="Розкажи про свої ідеї..."
+                  rows={3}
+                  autoComplete="off"
+                  label="Повідомлення"
+                />
+                <Button
+                  type="submit"
+                  variant="submit"
+                  size="submit"
+                >
                   Відправити
-                </button>
+                </Button>
               </form>
 
               {/* Google Map */}
@@ -314,7 +334,7 @@ const Page: NextPage = () => {
           </div>
         </section>
 
-        <footer id="footer" className="bg-background border-t border-border/10 py-12">
+        <footer id="footer" role="contentinfo" className="bg-background border-t border-border/10 py-12">
           <div className="mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10 text-sm text-muted-foreground max-w-page-full">
             <div className="text-center md:text-left space-y-2">
               <p className="text-base font-bold text-foreground">© 2025 «Грим та Грім». Всі права захищені.</p>
