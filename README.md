@@ -422,6 +422,10 @@ pnpm lighthouse:setup
 
 ![Footer](spec/gifs/footer.gif)
 
+#### Mobile
+
+![Mobile](spec/gifs/mobile.gif)
+
 #### Full Page
 
 ![Full Page](spec/gifs/page.gif)

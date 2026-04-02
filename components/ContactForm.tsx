@@ -308,6 +308,7 @@ export function ContactForm() {
           type="submit"
           variant="submit"
           size="submit"
+          className="w-full md:w-auto"
           disabled={isSubmitting || rateLimited}
         >
           {rateLimited 
