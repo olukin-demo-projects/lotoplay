@@ -30,6 +30,9 @@ export const Header = () => {
           <span className="text-xl font-black uppercase tracking-widest text-foreground">
             G&G
           </span>
+          <span className="text-sm font-medium text-foreground/70 hidden sm:inline">
+            Грим та Грім
+          </span>
         </div>
         
         {/* Desktop Navigation */}

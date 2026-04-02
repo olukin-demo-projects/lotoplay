@@ -18,9 +18,9 @@
     "lighthouse:setup": "google-chrome --headless --remote-debugging-port=9222",
     "lighthouse:json": "npx lighthouse --port=9222 --output=json --output-path=./reports/lighthouse.json http://localhost:3000",
     "lighthouse:mobile": "npx lighthouse --port=9222 --view --output=html --output-path=./reports/lighthouse-mobile.html --form-factor=mobile http://localhost:3000",
-    "lighthouse:desktop": "npx lighthouse --port=9222 --view --output=html --output-path=./reports/lighthouse-desktop.html --form-factor=desktop http://localhost:3000",
+    "lighthouse:desktop": "npx lighthouse --port=9222 --view --output=html --output-path=./reports/lighthouse-desktop.html --form-factor=desktop --screenEmulation.disabled=true http://localhost:3000",
     "lighthouse:mobile-json": "npx lighthouse --port=9222 --output=json --output-path=./reports/lighthouse-mobile.json --form-factor=mobile http://localhost:3000",
-    "lighthouse:desktop-json": "npx lighthouse --port=9222 --output=json --output-path=./reports/lighthouse-desktop.json --form-factor=desktop http://localhost:3000",
+    "lighthouse:desktop-json": "npx lighthouse --port=9222 --output=json --output-path=./reports/lighthouse-desktop.json --form-factor=desktop --screenEmulation.disabled=true http://localhost:3000",
     "lighthouse:all": "npm run lighthouse:mobile && npm run lighthouse:desktop"
   },
   "dependencies": {

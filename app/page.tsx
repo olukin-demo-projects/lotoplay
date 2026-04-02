@@ -6,9 +6,8 @@ import React, { useRef, useState } from 'react';
 import { useParallax } from '@/hooks/useParallax';
 import { useVideoPreload } from '@/hooks/useVideoPreload';
 import { useVideoExpansion } from '@/hooks/useVideoExpansion';
-import { upcomingConcerts, concertDateUrls } from '@/utils/consts';
+import { concertDateUrls } from '@/utils/consts';
 
-import SEOHead from '@/components/SEOHead';
 import { Header } from '@/components/sections/Header';
 import HeroSection from '@/components/sections/HeroSection';
 import UpcomingEvents from '@/components/sections/UpcomingEvents';
@@ -44,8 +43,6 @@ const Page: NextPage = () => {
 
   return (
     <>
-      <SEOHead upcomingConcerts={upcomingConcerts} />
-
       <div className="min-h-screen bg-background text-foreground flex flex-col antialiased">
         <Header />
 

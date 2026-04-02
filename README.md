@@ -143,6 +143,46 @@
 - **ContactSection** - Контактна форма з інтегрованою картою
 - **Footer** - Футер з навігаційними посиланнями та соцмережами
 
+## 🎨 Реалізація Favicon
+
+Проект використовує комплексну налаштування favicon, згенеровану за допомогою [RealFaviconGenerator](https://realfavicongenerator.net/) для оптимальної сумісності між платформами.
+
+### Згенеровані файли
+
+Усі файли favicon розташовані в директорії `app/` для сумісності з Next.js App Router:
+
+- `icon0.svg` - Основний SVG favicon
+- `icon1.png` - PNG favicon резервна копія
+- `favicon.ico` - Традиційний ICO favicon
+- `apple-icon.png` - Apple touch icon
+- `manifest.json` - Web app manifest
+
+### Ікони Web App Manifest
+
+Додаткові ікони маніфесту зберігаються в директорії `public/`:
+
+- `web-app-manifest-192x192.png` - 192x192 PWA іконка
+- `web-app-manifest-512x512.png` - 512x512 PWA іконка
+
+### Верифікація
+
+Для перевірки реалізації favicon:
+
+```bash
+# Перевірити реалізацію favicon на порту 3000
+npx realfavicon check 3000
+```
+
+Ця команда перевіряє, що всі файли favicon правильно налаштовані та доступні на різних платформах та пристроях.
+
+### Процес генерації
+
+Favicon було згенеровано за допомогою [RealFaviconGenerator](https://realfavicongenerator.net/), який надає:
+- Сумісність між платформами (iOS, Android, Windows, macOS)
+- Підтримку множинних форматів (SVG, PNG, ICO)
+- Генерацію web app manifest
+- Оптимізацію PWA
+
 ## 🎨 Компоненти та функціональність
 
 ### Секційні компоненти
@@ -481,6 +521,20 @@ React Doctor перевіряє:
 ## 📈 Lighthouse Testing
 
 Детальна інформація про тестування продуктивності з Lighthouse доступна в [README-LIGHTHOUSE.md](./README-LIGHTHOUSE.md)
+
+### Performance Scores
+
+![Desktop Score](spec/pagespeed/pagespeed.web.dev_analysis_https-lotoplay-five-vercel-app_q9qsp4wp04_form_factor=mobile (1).png)
+
+![Mobile Score](spec/pagespeed/pagespeed.web.dev_analysis_https-lotoplay-five-vercel-app_q9qsp4wp04_form_factor=mobile (2).png)
+
+### PageSpeed Insights
+
+**[Desktop Performance Report](https://pagespeed.web.dev/analysis/https-lotoplay-five-vercel-app/q9qsp4wp04?form_factor=desktop)**
+
+![Desktop PageSpeed](spec/pagespeed/pagespeed.web.dev_analysis_https-lotoplay-five-vercel-app_q9qsp4wp04_form_factor=desktop.png)
+
+![Mobile PageSpeed](spec/pagespeed/pagespeed.web.dev_analysis_https-lotoplay-five-vercel-app_q9qsp4wp04_form_factor=mobile.png)
 
 ### Швидкі команди
 
