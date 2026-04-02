@@ -392,15 +392,41 @@ pnpm lighthouse:setup
 
 ## 🎬 Playwright Comparison GIFs
 
-*Цей розділ буде заповнений GIF-анімаціями, що демонструють роботу сайту*
+### Page Sections
 
-### Плановані демонстрації
+#### Header Navigation
 
-- Паралакс-ефекти при прокрутці
-- Розширення відео в секції "Наша історія"
-- Responsive поведінка на різних пристроях
-- Інтерактивні елементи та hover стани
-- Навігація та плавна прокрутка
+![Header Navigation](spec/gifs/header.gif)
+
+#### Hero Section
+
+![Hero Section](spec/gifs/hero.gif)
+
+#### Band Members
+
+![Band Members](spec/gifs/members.gif)
+
+#### Concerts Section
+
+![Concerts Section](spec/gifs/concerts.gif)
+
+#### History Section
+
+![History Section](spec/gifs/history.gif)
+
+#### Contact Form
+
+![Contact Form](spec/gifs/contacts.gif)
+
+#### Footer
+
+![Footer](spec/gifs/footer.gif)
+
+#### Full Page
+
+![Full Page](spec/gifs/page.gif)
+
+![Full Page Screenshot](spec/gifs/page.png)
 
 ## 🚀 Розгортання
 
