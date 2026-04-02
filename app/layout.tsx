@@ -68,6 +68,11 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Гурт «Грим та Грім» | Офіційний сайт українського рок-гурту",
   description: "Український рок-гурт «Грим та Грім» — потужні концерти, нові пісні та справжня енергія українського року. Замовляйте квитки онлайн!",
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
+  },
 };
 
 export default function RootLayout({

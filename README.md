@@ -1,5 +1,52 @@
 # Грим та Грім - Офіційний сайт
 
+## 📋 Зміст (Table of Contents)
+
+<details>
+<summary>Розгорнути/Згорнути</summary>
+
+- [🎯 Про проект](#-про-проект)
+  - [Ключові особливості](#ключові-особливості)
+- [🚀 Технологічний стек](#-технологічний-стек)
+  - [Core Framework](#core-framework)
+  - [Styling & UI](#styling--ui)
+  - [SEO & Performance](#seo--performance)
+  - [Testing & Quality](#testing--quality)
+  - [Package Manager](#package-manager)
+  - [Contact Form & Security](#contact-form--security)
+- [📁 Структура проекту](#-структура-проекту)
+- [🧩 Модульна архітектура секцій](#️-модульна-архітектура-секцій)
+  - [Переваги модульної структури](#переваги-модульної-структури)
+  - [Композиція сторінки](#композиція-сторінки)
+  - [Доступні секції](#доступні-секції)
+- [🎨 Реалізація Favicon](#-реалізація-favicon)
+  - [Згенеровані файли](#згенеровані-файли)
+  - [Ікони Web App Manifest](#ікони-web-app-manifest)
+  - [Верифікація](#верифікація)
+  - [Процес генерації](#процес-генерації)
+- [🎨 Компоненти та функціональність](#-компоненти-та-функціональність)
+  - [Секційні компоненти](#секційні-компоненти)
+- [🧪 Тестування](#-тестування)
+  - [Playwright Screenshot Testing](#playwright-screenshot-testing)
+  - [React Doctor](#react-doctor)
+- [📈 Lighthouse Testing](#-lighthouse-testing)
+  - [Performance Scores](#performance-scores)
+  - [PageSpeed Insights](#pagespeed-insights)
+  - [Швидкі команди](#швидкі-команди)
+  - [Звіти](#звіти)
+- [🎬 Playwright Comparison GIFs](#-playwright-comparison-gifs)
+  - [Page Sections](#page-sections)
+- [🚀 Розгортання](#-розгортання)
+  - [Локальний розвиток](#локальний-розвиток)
+  - [Environment Variables](#environment-variables)
+  - [Production Deployment](#production-deployment)
+- [📝 Скрипти](#-скрипти)
+- [🤝 Внесок](#-внесок)
+- [📄 Ліцензія](#-ліцензія)
+- [📞 Контакти](#-контакти)
+
+</details>
+
 Сучасний веб-сайт українського рок-гурту «Грим та Грім», побудований на Next.js 16 з акцентом на продуктивність, доступність та SEO-оптимізацію.
 
 ## 🎯 Про проект
@@ -524,9 +571,9 @@ React Doctor перевіряє:
 
 ### Performance Scores
 
-![Desktop Score](spec/pagespeed/pagespeed.web.dev_analysis_https-lotoplay-five-vercel-app_q9qsp4wp04_form_factor=mobile (1).png)
+![Desktop Score](spec/pagespeed/desktop_score.png)
 
-![Mobile Score](spec/pagespeed/pagespeed.web.dev_analysis_https-lotoplay-five-vercel-app_q9qsp4wp04_form_factor=mobile (2).png)
+![Mobile Score](spec/pagespeed/mobile_score.png)
 
 ### PageSpeed Insights
 
