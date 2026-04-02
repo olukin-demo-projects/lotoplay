@@ -11,8 +11,7 @@ import { handleSmoothScroll } from '@/utils/handleSmoothScroll';
 
 import SEOHead from '@/components/SEOHead';
 import GoogleMap from '@/components/LazyGoogleMap';
-import { FormInput } from '@/components/ui/form-input';
-import { FormTextarea } from '@/components/ui/form-textarea';
+import { ContactForm } from '@/components/ContactForm';
 import { Button } from '@/components/ui/button';
 import { VideoContainer, VideoWrapper, VideoImage, VideoElement, VideoBackdrop } from "@/components/ui/video-container";
 
@@ -272,38 +271,7 @@ const Page: NextPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
               {/* Contact Form */}
-              <form role="form" aria-labelledby="contact-heading">
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <FormInput
-                    id="name"
-                    type="text"
-                    placeholder="Ваше ім'я"
-                    autoComplete="name"
-                    label="Ім'я"
-                  />
-                  <FormInput
-                    id="email"
-                    type="email"
-                    placeholder="example@mail.com"
-                    autoComplete="email"
-                    label="Email"
-                  />
-                </div>
-                <FormTextarea
-                  id="message"
-                  placeholder="Розкажи про свої ідеї..."
-                  rows={3}
-                  autoComplete="off"
-                  label="Повідомлення"
-                />
-                <Button
-                  type="submit"
-                  variant="submit"
-                  size="submit"
-                >
-                  Відправити
-                </Button>
-              </form>
+              <ContactForm />
 
               {/* Google Map */}
               <div className="space-y-6">
