@@ -2,7 +2,7 @@
 
 import type { NextPage } from 'next';
 import Image from "next/image";
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { useParallax } from '@/hooks/useParallax';
 import { useVideoPreload } from '@/hooks/useVideoPreload';
@@ -14,6 +14,7 @@ import GoogleMap from '@/components/LazyGoogleMap';
 import { ContactForm } from '@/components/ContactForm';
 import { Button } from '@/components/ui/button';
 import { VideoContainer, VideoWrapper, VideoImage, VideoElement, VideoBackdrop } from "@/components/ui/video-container";
+import TicketPopup from '@/components/TicketPopup';
 
 const navigationLinks = [
   { name: 'Про гурт', href: '#about' },
@@ -38,11 +39,18 @@ const bandMembers = [
 ];
 
 const upcomingConcerts = [
-  { city: 'Київ — Docker-G Pub', capacity: '250', date: '25.10.2025, 19:00' },
-  { city: 'Львів — !FESTrepublic', capacity: '400', date: '01.11.2025, 20:00' },
-  { city: 'Одеса — Зелен театр', capacity: '700', date: '09.11.2025, 19:30' },
-  { city: 'Харків — ArtZavod', capacity: '500', date: '16.11.2025, 19:00' },
+  { city: 'Київ — Docker-G Pub', capacity: '250', date: '25.10.2025, 19:00', dateId: '240' },
+  { city: 'Львів — !FESTrepublic', capacity: '400', date: '01.11.2025, 20:00', dateId: '261' },
+  { city: 'Одеса — Зелен театр', capacity: '700', date: '09.11.2025, 19:30', dateId: '253' },
+  { city: 'Харків — ArtZavod', capacity: '500', date: '16.11.2025, 19:00', dateId: '229' },
 ];
+
+const concertDateUrls: Record<string, string> = {
+  '240': 'https://demo2.event.net.ua/cart/cart?id_date=240',
+  '261': 'https://demo2.event.net.ua/cart/cart?id_date=261',
+  '253': 'https://demo2.event.net.ua/cart/cart?id_date=253',
+  '229': 'https://demo2.event.net.ua/cart/cart?id_date=229',
+};
 
 const ABOUT_VIDEO_SRC = 'https://zra0j6cq7i.ufs.sh/f/5k3xyIUP1Tx745GptCXoIrTbCxKyLgJAVz6XpnjtZekcwM9P';
 
@@ -53,6 +61,19 @@ const Page: NextPage = () => {
   const aboutSectionRef = useRef<HTMLElement>(null);
   const aboutTextRef = useRef<HTMLParagraphElement>(null);
   const videoExpanded = useVideoExpansion(aboutVideoRef, aboutTextRef);
+
+  const [isTicketPopupOpen, setIsTicketPopupOpen] = useState(false);
+  const [selectedDateUrl, setSelectedDateUrl] = useState('');
+
+  const openTicketPopup = (dateId: string) => {
+    setSelectedDateUrl(concertDateUrls[dateId]);
+    setIsTicketPopupOpen(true);
+  };
+
+  const closeTicketPopup = () => {
+    setIsTicketPopupOpen(false);
+    setSelectedDateUrl('');
+  };
 
   // Preload video when section enters viewport OR after 15s
   useVideoPreload(aboutVideoRef, aboutSectionRef);
@@ -167,6 +188,7 @@ const Page: NextPage = () => {
                         <Button 
                           variant="secondary" 
                           className="rounded-lg px-5 py-2 font-bold hover:bg-secondary/90"
+                          onClick={() => openTicketPopup(concert.dateId)}
                         >
                           Замовити квиток
                         </Button>
@@ -324,6 +346,12 @@ const Page: NextPage = () => {
             </div>
           </div>
         </footer>
+
+        <TicketPopup
+          isOpen={isTicketPopupOpen}
+          onClose={closeTicketPopup}
+          dateUrl={selectedDateUrl}
+        />
 
       </div>
     </>
